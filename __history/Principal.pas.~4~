@@ -1,0 +1,106 @@
+unit Principal;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl, FMX.Edit, FMX.Layouts,
+  FMX.Ani, FMX.Effects, FMX.Menus, FMX.MultiView;
+
+type
+  TfrmPrincipal = class(TForm)
+    rctFundo: TRectangle;
+    GroupBox1: TGroupBox;
+    edtMomentoInerciaTransmissao: TEdit;
+    lvlMomentoInerciaTransmissao: TLabel;
+    lytPotencia: TLayout;
+    lblMomentoInerciaTransmissao: TLabel;
+    rctBtnCalcular: TRectangle;
+    btnCalcular: TSpeedButton;
+    rctLimpar: TRectangle;
+    btmLimpar: TSpeedButton;
+    GroupBox2: TGroupBox;
+    Layout1: TLayout;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label2: TLabel;
+    menu: TMultiView;
+    rctNavBar: TRectangle;
+    ShadowEffect1: TShadowEffect;
+    btnChamaMenu: TSpeedButton;
+    btnFechar: TSpeedButton;
+    rctMenu: TRectangle;
+    btnMenuCalcular: TSpeedButton;
+    lblTitle: TLabel;
+    Layout2: TLayout;
+    lvlRendimentoTransmissao: TLabel;
+    edtRendimentoTransmissao: TEdit;
+    lblRendimentoTransmissao: TLabel;
+    Layout3: TLayout;
+    lvlRelacaoTransmissao: TLabel;
+    edtRelacaoTransmissao: TEdit;
+    lblRelacaoTransmissao: TLabel;
+    Layout4: TLayout;
+    lvlMomentoInercia: TLabel;
+    edtMomentoInercia: TEdit;
+    lblMomentoInercia: TLabel;
+    Layout5: TLayout;
+    lvlConjugadoPartida: TLabel;
+    edtConjugadoPartida: TEdit;
+    lblConjugadoPartida: TLabel;
+    Layout6: TLayout;
+    lvlConjugadoNominal: TLabel;
+    edtConjugadoNominal: TEdit;
+    lblConjugadoNominal: TLabel;
+    Layout7: TLayout;
+    lvlVelocidadeNominal: TLabel;
+    edtVelocidadeNominal: TEdit;
+    lblVelocidadeNominal: TLabel;
+    Layout8: TLayout;
+    Label3: TLabel;
+    Edit2: TEdit;
+    Label4: TLabel;
+    Layout9: TLayout;
+    Label5: TLabel;
+    Edit3: TEdit;
+    Label6: TLabel;
+    Layout10: TLayout;
+    Label7: TLabel;
+    Edit4: TEdit;
+    Label8: TLabel;
+    Layout11: TLayout;
+    Label9: TLabel;
+    Edit5: TEdit;
+    Label10: TLabel;
+    Layout12: TLayout;
+    Label11: TLabel;
+    Edit6: TEdit;
+    Label12: TLabel;
+    procedure btnChamaMenuClick(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.fmx}
+
+procedure TfrmPrincipal.btnChamaMenuClick(Sender: TObject);
+begin
+  menu.ShowMaster;
+end;
+
+procedure TfrmPrincipal.btnFecharClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+
+end.

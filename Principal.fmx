@@ -22,7 +22,7 @@ object frmPrincipal: TfrmPrincipal
     Size.Height = 540.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
-    object GroupBox1: TGroupBox
+    object gbDadosEntrada: TGroupBox
       StyledSettings = [Size, FontColor, Other]
       Padding.Left = 10.000000000000000000
       Padding.Top = 30.000000000000000000
@@ -37,33 +37,33 @@ object frmPrincipal: TfrmPrincipal
       TextSettings.Font.Family = 'JetBrains Mono'
       TextSettings.Font.StyleExt = {00070000000000000004000000}
       TabOrder = 0
-      object lytPotencia: TLayout
+      object lyMomentoInerciaTransmissao: TLayout
         Align = Top
         Position.X = 10.000000000000000000
-        Position.Y = 30.000000000000000000
+        Position.Y = 174.000000000000000000
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 36
-        object lvlPotencia: TLabel
+        TabOrder = 39
+        object lvlMomentoInerciaTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 97.000000000000000000
+          Size.Width = 113.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
-          Text = 'Pot'#234'ncia'
+          Text = 'In'#233'rcia Transmiss'#227'o'
           TabOrder = 1
         end
-        object edtPotencia: TEdit
+        object edtMomentoInerciaTransmissao: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
-          Size.Width = 149.000000000000000000
+          Size.Width = 133.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
-        object lblPotenciaMedida: TLabel
+        object lblMomentoInerciaTransmissao: TLabel
           Align = Right
           StyledSettings = []
           Margins.Left = 5.000000000000000000
@@ -74,45 +74,291 @@ object frmPrincipal: TfrmPrincipal
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
-          Text = '[Wats]'
+          Text = '[kg.m2]'
+          TabOrder = 0
+        end
+      end
+      object lyRendimentoTransmissaoEntrada: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 150.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 38
+        object lvlRendimentoTransmissao: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Rendimento Transmiss'#227'o'
+          TabOrder = 1
+        end
+        object edtRendimentoTransmissao: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblRendimentoTransmissao: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '['#951'%]'
+          TabOrder = 0
+        end
+      end
+      object lyRelacaoTransmissaoEntrada: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 126.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 36
+        object lvlRelacaoTransmissao: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Rela'#231#227'o Transmiss'#227'o'
+          TabOrder = 1
+        end
+        object edtRelacaoTransmissao: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblRelacaoTransmissao: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[z%]'
+          TabOrder = 0
+        end
+      end
+      object lyMomentoInerciaEntrada: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 102.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 34
+        object lvlMomentoInercia: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Momento In'#233'rcia'
+          TabOrder = 1
+        end
+        object edtMomentoInercia: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblMomentoInercia: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[kg.m2]'
+          TabOrder = 0
+        end
+      end
+      object lyConjugadoPartidaEntrada: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 78.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 33
+        object lvlConjugadoPartida: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Conjugado Partida'
+          TabOrder = 1
+        end
+        object edtConjugadoPartida: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblConjugadoPartida: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[N.m]'
+          TabOrder = 0
+        end
+      end
+      object lyConjugadoNominalEntrada: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 54.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 37
+        object lvlConjugadoNominal: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Conjugado Nominal'
+          TabOrder = 1
+        end
+        object edtConjugadoNominal: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblConjugadoNominal: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[N.m]'
+          TabOrder = 0
+        end
+      end
+      object lyVelocidadeNominalEntrada: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 30.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 35
+        object lvlVelocidadeNominal: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Velocidade Nominal'
+          TabOrder = 1
+        end
+        object edtVelocidadeNominal: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblVelocidadeNominal: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[rpm]'
           TabOrder = 0
         end
       end
     end
-    object GroupBox2: TGroupBox
+    object dbDadosSaida: TGroupBox
       StyledSettings = [Size, FontColor, Other]
       Padding.Left = 10.000000000000000000
       Padding.Top = 30.000000000000000000
       Padding.Right = 10.000000000000000000
       Padding.Bottom = 20.000000000000000000
       Position.X = 376.000000000000000000
-      Position.Y = 48.000000000000000000
+      Position.Y = 40.000000000000000000
       Size.Width = 601.000000000000000000
-      Size.Height = 433.000000000000000000
+      Size.Height = 441.000000000000000000
       Size.PlatformDefault = False
-      Text = 'Dados de entrada'
+      Text = 'Dados de sa'#237'da'
       TextSettings.Font.Family = 'JetBrains Mono'
       TextSettings.Font.StyleExt = {00070000000000000004000000}
       TabOrder = 2
-      object Layout1: TLayout
+      object lyTempoAceleracaoLimiteSaida: TLayout
         Align = Top
         Position.X = 10.000000000000000000
-        Position.Y = 30.000000000000000000
+        Position.Y = 150.000000000000000000
         Size.Width = 581.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 38
-        object Label1: TLabel
+        TabOrder = 43
+        object lvlTempoAceleracaoLimiteSaida: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
           Size.Width = 153.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
-          Text = 'Saida'
+          Text = 'Tempo Acelera'#231#227'o Limite'
           TabOrder = 1
         end
-        object Edit1: TEdit
+        object edtTempoAceleracaoLimiteSaida: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
@@ -120,7 +366,7 @@ object frmPrincipal: TfrmPrincipal
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
-        object Label2: TLabel
+        object lblTempoAceleracaoLimiteSaida: TLabel
           Align = Right
           StyledSettings = []
           Margins.Left = 5.000000000000000000
@@ -131,7 +377,212 @@ object frmPrincipal: TfrmPrincipal
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
-          Text = '[Wats]'
+          Text = '[s]'
+          TabOrder = 0
+        end
+      end
+      object lyTempoRotorBloqueado: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 126.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 41
+        object lvlTempoRotorBloqueadoSaida: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Tempo Rotor Bloqueado'
+          TabOrder = 1
+        end
+        object edtTempoRotorBloqueadoSaida: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblTempoRotorBloqueadoSaida: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[s]'
+          TabOrder = 0
+        end
+      end
+      object lyTempoAceleracaoSaida: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 102.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 40
+        object lvlTempoAceleracaoSaida: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Tempo de Acelera'#231#227'o'
+          TabOrder = 1
+        end
+        object edtTempoAceleracaoSaida: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblTempoAceleracaoSaida: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[s]'
+          TabOrder = 0
+        end
+      end
+      object lyConjugadoNominalSaida: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 78.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 39
+        object lvlConjugadoNominalSaida: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Conjugado Nominal'
+          TabOrder = 1
+        end
+        object edtConjugadoNominalSaida: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblConjugadoNominalSaida: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[N.m]'
+          TabOrder = 0
+        end
+      end
+      object lyVelocidadeNominalSaida: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 54.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 42
+        object lvlVelocidadeNominalSaida: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Velocidade Nominal'
+          TabOrder = 1
+        end
+        object edtVelocidadeNominalSaida: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblVelocidadeNominalSaida: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[rpm]'
+          TabOrder = 0
+        end
+      end
+      object lyPotenciaNominalSaida: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 30.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 38
+        object lvlPotenciaNominalSaida: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Pot'#234'ncia Nominal'
+          TabOrder = 1
+        end
+        object edtPotenciaNominalSaida: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblPotenciaNominalSaida: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[kW]'
           TabOrder = 0
         end
       end
@@ -240,7 +691,7 @@ object frmPrincipal: TfrmPrincipal
     Size.Height = 540.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 1
+    TabOrder = 0
     object rctMenu: TRectangle
       Align = Client
       Fill.Color = claBlack

@@ -1,0 +1,722 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 0
+  Top = 0
+  BorderStyle = Single
+  Caption = 'Principal'
+  ClientHeight = 581
+  ClientWidth = 1031
+  Position = DesktopCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object rctFundo: TRectangle
+    Align = Right
+    Fill.Color = claWhite
+    Padding.Left = 30.000000000000000000
+    Padding.Top = 30.000000000000000000
+    Padding.Right = 30.000000000000000000
+    Padding.Bottom = 30.000000000000000000
+    Position.Y = 41.000000000000000000
+    Size.Width = 1031.000000000000000000
+    Size.Height = 540.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object GroupBox1: TGroupBox
+      StyledSettings = [Size, FontColor, Other]
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 30.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 20.000000000000000000
+      Position.X = 32.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 321.000000000000000000
+      Size.Height = 441.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Dados de entrada'
+      TextSettings.Font.Family = 'JetBrains Mono'
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TabOrder = 0
+      object lytPotencia: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 174.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 39
+        object lvlMomentoInerciaTransmissao: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'In'#233'rcia Transmiss'#227'o'
+          TabOrder = 1
+        end
+        object edtMomentoInerciaTransmissao: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblMomentoInerciaTransmissao: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[KG.M2]'
+          TabOrder = 0
+        end
+      end
+      object Layout2: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 150.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 38
+        object lvlRendimentoTransmissao: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Rendimento Transmiss'#227'o'
+          TabOrder = 1
+        end
+        object edtRendimentoTransmissao: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblRendimentoTransmissao: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '['#951'%]'
+          TabOrder = 0
+        end
+      end
+      object Layout3: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 126.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 36
+        object lvlRelacaoTransmissao: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Rela'#231#227'o Transmiss'#227'o'
+          TabOrder = 1
+        end
+        object edtRelacaoTransmissao: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblRelacaoTransmissao: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[z%]'
+          TabOrder = 0
+        end
+      end
+      object Layout4: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 102.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 34
+        object lvlMomentoInercia: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Momento In'#233'rcia'
+          TabOrder = 1
+        end
+        object edtMomentoInercia: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblMomentoInercia: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '['#951'%]'
+          TabOrder = 0
+        end
+      end
+      object Layout5: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 78.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 33
+        object lvlConjugadoPartida: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Conjugado Partida'
+          TabOrder = 1
+        end
+        object edtConjugadoPartida: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblConjugadoPartida: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[N.M]'
+          TabOrder = 0
+        end
+      end
+      object Layout6: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 54.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 37
+        object lvlConjugadoNominal: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Conjugado Nominal'
+          TabOrder = 1
+        end
+        object edtConjugadoNominal: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblConjugadoNominal: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[N.M]'
+          TabOrder = 0
+        end
+      end
+      object Layout7: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 30.000000000000000000
+        Size.Width = 301.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 35
+        object lvlVelocidadeNominal: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 113.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Velocidade Nominal'
+          TabOrder = 1
+        end
+        object edtVelocidadeNominal: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 133.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblVelocidadeNominal: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 251.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[RPM]'
+          TabOrder = 0
+        end
+      end
+    end
+    object GroupBox2: TGroupBox
+      StyledSettings = [Size, FontColor, Other]
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 30.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 20.000000000000000000
+      Position.X = 376.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 601.000000000000000000
+      Size.Height = 433.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Dados de entrada'
+      TextSettings.Font.Family = 'JetBrains Mono'
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TabOrder = 2
+      object Layout1: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 150.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 43
+        object Label1: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Pot'#234'ncia Nominal'
+          TabOrder = 1
+        end
+        object Edit1: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Label2: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[Wats]'
+          TabOrder = 0
+        end
+      end
+      object Layout8: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 126.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 41
+        object Label3: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Pot'#234'ncia Nominal'
+          TabOrder = 1
+        end
+        object Edit2: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Label4: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[Wats]'
+          TabOrder = 0
+        end
+      end
+      object Layout9: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 102.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 40
+        object Label5: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Pot'#234'ncia Nominal'
+          TabOrder = 1
+        end
+        object Edit3: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Label6: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[Wats]'
+          TabOrder = 0
+        end
+      end
+      object Layout10: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 78.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 39
+        object Label7: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Pot'#234'ncia Nominal'
+          TabOrder = 1
+        end
+        object Edit4: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Label8: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[Wats]'
+          TabOrder = 0
+        end
+      end
+      object Layout11: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 54.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 42
+        object Label9: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Pot'#234'ncia Nominal'
+          TabOrder = 1
+        end
+        object Edit5: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Label10: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[Wats]'
+          TabOrder = 0
+        end
+      end
+      object Layout12: TLayout
+        Align = Top
+        Position.X = 10.000000000000000000
+        Position.Y = 30.000000000000000000
+        Size.Width = 581.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 38
+        object Label11: TLabel
+          Align = Left
+          StyledSettings = [Size, Style, FontColor]
+          Size.Width = 153.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          Text = 'Pot'#234'ncia Nominal'
+          TabOrder = 1
+        end
+        object Edit6: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Size.Width = 373.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Label12: TLabel
+          Align = Right
+          StyledSettings = []
+          Margins.Left = 5.000000000000000000
+          Position.X = 531.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'JetBrains Mono'
+          TextSettings.Font.Size = 11.000000000000000000
+          TextSettings.FontColor = claCrimson
+          Text = '[Wats]'
+          TabOrder = 0
+        end
+      end
+    end
+    object rctBtnCalcular: TRectangle
+      Fill.Color = claDarkslategray
+      Position.X = 32.000000000000000000
+      Position.Y = 488.000000000000000000
+      Size.Width = 321.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object btnCalcular: TSpeedButton
+        Align = Client
+        StyledSettings = []
+        Size.Width = 321.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'CALCULAR'
+        TextSettings.Font.Family = 'Consolas'
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhite
+      end
+    end
+    object rctLimpar: TRectangle
+      Fill.Color = claDarkgray
+      Position.X = 864.000000000000000000
+      Position.Y = 488.000000000000000000
+      Size.Width = 113.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object btmLimpar: TSpeedButton
+        Align = Client
+        StyledSettings = []
+        Size.Width = 113.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'LIMPAR'
+        TextSettings.Font.Family = 'Consolas'
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhite
+      end
+    end
+  end
+  object rctNavBar: TRectangle
+    Align = Top
+    Fill.Color = claBlack
+    Size.Width = 1031.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object ShadowEffect1: TShadowEffect
+      Distance = 3.000000000000000000
+      Direction = 45.000000000000000000
+      Softness = 0.200000002980232200
+      Opacity = 0.200000002980232200
+      ShadowColor = claBlack
+    end
+    object btnChamaMenu: TSpeedButton
+      Align = MostLeft
+      Padding.Left = 10.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'detailstoolbutton'
+      Text = 'btnChamaMenu'
+      TextSettings.FontColor = claWhite
+      OnClick = btnChamaMenuClick
+    end
+    object btnFechar: TSpeedButton
+      Align = Right
+      StyledSettings = [Family, Size, Style]
+      Padding.Left = 10.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Position.X = 983.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'cleareditbutton'
+      Text = 'btnChamaMenu'
+      TextSettings.FontColor = claNull
+      OnClick = btnFecharClick
+    end
+    object lblTitle: TLabel
+      Align = Left
+      StyledSettings = [Family, Style]
+      Position.X = 53.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = claWhite
+      Text = 'Especifica'#231#227'o de motores el'#233'tricos'
+      TabOrder = 4
+    end
+  end
+  object menu: TMultiView
+    Mode = Drawer
+    NavigationPaneOptions.CollapsedWidth = 0.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 540.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 0
+    object rctMenu: TRectangle
+      Align = Client
+      Fill.Color = claBlack
+      Padding.Left = 7.000000000000000000
+      Padding.Top = 20.000000000000000000
+      Padding.Right = 7.000000000000000000
+      Padding.Bottom = 10.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 540.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object btnMenuCalcular: TSpeedButton
+        Align = Top
+        StyledSettings = []
+        Position.X = 7.000000000000000000
+        Position.Y = 20.000000000000000000
+        Size.Width = 155.000000000000000000
+        Size.Height = 28.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'CALCULAR'
+        TextSettings.Font.Family = 'Roboto'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhite
+      end
+    end
+  end
+end
