@@ -30,6 +30,11 @@ uses
 
 function TEMCalcular.Calcular: IEMValoresCalculados;
 begin
+  {----------- 1 - Velocidade do motor e número de polos ----------------------}
+  {  Rotação nominal da carga [Nm]  }
+  // Cnc - Conjudado nominal da carga =
+
+  {----------- 2 - Determinação de Potencia nominal da carga ------------------}
   Result := TEMValoresCalculados.New(GetPotenciaNominal,
                                      GetVelocNominal,
                                      GetConjugadoNominal,
