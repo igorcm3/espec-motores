@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl, FMX.Edit, FMX.Layouts,
-  FMX.Ani, FMX.Effects, FMX.Menus, FMX.MultiView;
+  FMX.Ani, FMX.Effects, FMX.Menus, FMX.MultiView, uIEMParametrosCalcular;
 
 type
   TfrmPrincipal = class(TForm)
@@ -87,7 +87,9 @@ type
     procedure FormMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
     procedure btmLimparClick(Sender: TObject);
+    procedure btnCalcularClick(Sender: TObject);
   private
+    function GetParametrosCalcular: IEMParametrosCalcular;
     { Private declarations }
   public
     isDraging: boolean;
@@ -99,6 +101,9 @@ var
   frmPrincipal: TfrmPrincipal;
 
 implementation
+
+uses
+  uEMValoresCalculados, uIEMValoresCalculados, uEMCalcular, uEMParametrosCalcular;
 
 {$R *.fmx}
 
@@ -124,7 +129,24 @@ begin
   edtTempoAceleracaoLimiteSaida.Text := EmptyStr;
 
   edtVelocidadeNominal.SetFocus;
+end;
 
+procedure TfrmPrincipal.btnCalcularClick(Sender: TObject);
+var
+  AoValoresCalculados: IEMValoresCalculados;
+begin
+///  AoValoresCalculados := TEMCalcular.New().Calcular;
+end;
+
+function TfrmPrincipal.GetParametrosCalcular: IEMParametrosCalcular;
+begin
+  {Result := TEMParametrosCalcular.New(edtVelocidadeNominal.Text,
+                                      edtConjugadoNominal.Text,
+                                      edtConjugadoPartida.Text,
+                                      edtMomentoInercia.Text,
+                                      edtRelacaoTransmissao.Text,
+                                      edtRendimentoTransmissao.Text,
+                                      edtMomentoInerciaTransmissao.Text);}
 end;
 
 procedure TfrmPrincipal.btnChamaMenuClick(Sender: TObject);
