@@ -111,25 +111,16 @@ uses
 {$R *.fmx}
 
 procedure TfrmPrincipal.btmLimparClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  // Limpa todos os inputs da tela
 
-  // Entradas
-  edtVelocidadeNominal.Text := EmptyStr;
-  edtConjugadoNominal.Text := EmptyStr;
-  edtConjugadoPartida.Text := EmptyStr;
-  edtMomentoInercia.Text := EmptyStr;
-  edtRelacaoTransmissao.Text := EmptyStr;
-  edtRendimentoTransmissao.Text := EmptyStr;
-  edtMomentoInerciaTransmissao.Text := EmptyStr;
-
-  //Saídas
-  edtPotenciaNominalSaida.Text := EmptyStr;
-  edtVelocidadeNominalSaida.Text := EmptyStr;
-  edtConjugadoNominalSaida.Text := EmptyStr;
-  edtTempoAceleracaoSaida.Text := EmptyStr;
-  edtTempoRotorBloqueadoSaida.Text := EmptyStr;
-  edtTempoAceleracaoLimiteSaida.Text := EmptyStr;
+  for i := frmPrincipal.ComponentCount -1 downto 0 do begin
+    if (frmPrincipal.Components[i] is TNumberBox) then begin
+       (frmPrincipal.Components[i] as TNumberBox).ResetFocus;
+       (frmPrincipal.Components[i] as TNumberBox).Value := 0;
+    end;
+  end;
 
   edtVelocidadeNominal.SetFocus;
 end;
