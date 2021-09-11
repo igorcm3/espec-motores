@@ -10,9 +10,6 @@ object frmPrincipal: TfrmPrincipal
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
-  OnMouseDown = FormMouseDown
-  OnMouseMove = FormMouseMove
-  OnMouseUp = FormMouseUp
   DesignerMasterStyle = 0
   object rctFundo: TRectangle
     Align = Client
@@ -48,7 +45,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 40
+        TabOrder = 37
         object lvlMomentoInerciaTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -59,13 +56,20 @@ object frmPrincipal: TfrmPrincipal
           Text = 'In'#233'rcia Transmiss'#227'o'
           TabOrder = 1
         end
-        object edtMomentoInerciaTransmissao: TEdit
+        object edtMomentoInerciaTransmissao: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
+          Caret.Color = claRed
+          OnClick = numberClick
+          OnEnter = numberEnter
         end
         object lblMomentoInerciaTransmissao: TLabel
           Align = Right
@@ -91,7 +95,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 39
+        TabOrder = 36
         object lvlRendimentoTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -102,13 +106,19 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Rendimento Transmiss'#227'o'
           TabOrder = 1
         end
-        object edtRendimentoTransmissao: TEdit
+        object edtRendimentoTransmissao: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 2
+          TabOrder = 6
+          Cursor = crIBeam
+          DecimalDigits = 4
+          ValueType = Float
           Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
+          Caret.Color = claRed
+          OnClick = numberClick
+          OnEnter = numberEnter
         end
         object lblRendimentoTransmissao: TLabel
           Align = Right
@@ -134,7 +144,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 36
+        TabOrder = 34
         object lvlRelacaoTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -145,13 +155,19 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Rela'#231#227'o Transmiss'#227'o'
           TabOrder = 1
         end
-        object edtRelacaoTransmissao: TEdit
+        object edtRelacaoTransmissao: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 2
+          TabOrder = 5
+          Cursor = crIBeam
+          DecimalDigits = 4
+          ValueType = Float
           Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
+          Caret.Color = claRed
+          OnClick = numberClick
+          OnEnter = numberEnter
         end
         object lblRelacaoTransmissao: TLabel
           Align = Right
@@ -177,7 +193,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 34
+        TabOrder = 33
         object lvlMomentoInercia: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -188,13 +204,20 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Momento In'#233'rcia'
           TabOrder = 1
         end
-        object edtMomentoInercia: TEdit
+        object edtMomentoInercia: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 2
+          TabOrder = 4
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
+          Caret.Color = claRed
+          OnClick = numberClick
+          OnEnter = numberEnter
         end
         object lblMomentoInercia: TLabel
           Align = Right
@@ -220,7 +243,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 33
+        TabOrder = 3
         object lvlConjugadoPartida: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -231,13 +254,20 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Conjugado Partida'
           TabOrder = 1
         end
-        object edtConjugadoPartida: TEdit
+        object edtConjugadoPartida: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 2
+          TabOrder = 3
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
+          Caret.Color = claRed
+          OnClick = numberClick
+          OnEnter = numberEnter
         end
         object lblConjugadoPartida: TLabel
           Align = Right
@@ -263,7 +293,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 38
+        TabOrder = 2
         object lvlConjugadoNominal: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -274,13 +304,20 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Conjugado Nominal'
           TabOrder = 1
         end
-        object edtConjugadoNominal: TEdit
+        object edtConjugadoNominal: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
+          Caret.Color = claRed
+          OnClick = numberClick
+          OnEnter = numberEnter
         end
         object lblConjugadoNominal: TLabel
           Align = Right
@@ -305,7 +342,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 35
+        TabOrder = 1
         object lvlVelocidadeNominal: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -314,15 +351,25 @@ object frmPrincipal: TfrmPrincipal
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           Text = 'Velocidade Nominal'
-          TabOrder = 1
+          TabOrder = 2
         end
-        object edtVelocidadeNominal: TEdit
+        object edtVelocidadeNominal: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 2
+          TabOrder = 1
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
+          HorzIncrement = 0.000000000000000000
+          VertIncrement = 0.000000000000000000
+          EnableDragHighlight = False
           Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
+          Caret.Color = claRed
+          OnClick = numberClick
+          OnEnter = numberEnter
         end
         object lblVelocidadeNominal: TLabel
           Align = Right
@@ -375,11 +422,16 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Tempo Acelera'#231#227'o Limite'
           TabOrder = 1
         end
-        object edtTempoAceleracaoLimiteSaida: TEdit
+        object edtTempoAceleracaoLimiteSaida: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Right
-          TabOrder = 2
+          TabOrder = 12
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Position.X = 266.000000000000000000
+          Enabled = False
           Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -419,11 +471,16 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Tempo Rotor Bloqueado'
           TabOrder = 1
         end
-        object edtTempoRotorBloqueadoSaida: TEdit
+        object edtTempoRotorBloqueadoSaida: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Right
-          TabOrder = 2
+          TabOrder = 11
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Position.X = 266.000000000000000000
+          Enabled = False
           Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -463,11 +520,16 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Tempo de Acelera'#231#227'o'
           TabOrder = 1
         end
-        object edtTempoAceleracaoSaida: TEdit
+        object edtTempoAceleracaoSaida: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Right
-          TabOrder = 2
+          TabOrder = 10
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Position.X = 266.000000000000000000
+          Enabled = False
           Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -507,11 +569,16 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Conjugado Nominal'
           TabOrder = 1
         end
-        object edtConjugadoNominalSaida: TEdit
+        object edtConjugadoNominalSaida: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Right
-          TabOrder = 2
+          TabOrder = 9
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Position.X = 266.000000000000000000
+          Enabled = False
           Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -551,11 +618,16 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Velocidade Nominal'
           TabOrder = 1
         end
-        object edtVelocidadeNominalSaida: TEdit
+        object edtVelocidadeNominalSaida: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Right
-          TabOrder = 2
+          TabOrder = 8
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Position.X = 266.000000000000000000
+          Enabled = False
           Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -594,11 +666,16 @@ object frmPrincipal: TfrmPrincipal
           Text = 'Pot'#234'ncia Nominal'
           TabOrder = 1
         end
-        object edtPotenciaNominalSaida: TEdit
+        object edtPotenciaNominalSaida: TNumberBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Right
-          TabOrder = 2
+          TabOrder = 7
+          Cursor = crIBeam
+          DecimalDigits = 4
+          Max = 1000000.000000000000000000
+          ValueType = Float
           Position.X = 266.000000000000000000
+          Enabled = False
           Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
@@ -744,7 +821,7 @@ object frmPrincipal: TfrmPrincipal
     Mode = Drawer
     NavigationPaneOptions.CollapsedWidth = 0.000000000000000000
     Size.Width = 169.000000000000000000
-    Size.Height = 540.000000000000000000
+    Size.Height = 531.000000000000000000
     Size.PlatformDefault = False
     Visible = False
     TabOrder = 0
@@ -756,7 +833,7 @@ object frmPrincipal: TfrmPrincipal
       Padding.Right = 7.000000000000000000
       Padding.Bottom = 10.000000000000000000
       Size.Width = 169.000000000000000000
-      Size.Height = 540.000000000000000000
+      Size.Height = 531.000000000000000000
       Size.PlatformDefault = False
       Stroke.Kind = None
       object btnMenuCalcular: TSpeedButton

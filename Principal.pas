@@ -6,13 +6,14 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl, FMX.Edit, FMX.Layouts,
-  FMX.Ani, FMX.Effects, FMX.Menus, FMX.MultiView, uIEMParametrosCalcular;
+  FMX.Ani, FMX.Effects, FMX.Menus, FMX.MultiView, uIEMParametrosCalcular,
+  FMX.EditBox, FMX.NumberBox;
 
 type
   TfrmPrincipal = class(TForm)
     rctFundo: TRectangle;
     gbDadosEntrada: TGroupBox;
-    edtMomentoInerciaTransmissao: TEdit;
+    edtMomentoInerciaTransmissao: TNumberBox;
     lvlMomentoInerciaTransmissao: TLabel;
     lyMomentoInerciaTransmissao: TLayout;
     lblMomentoInerciaTransmissao: TLabel;
@@ -23,7 +24,7 @@ type
     dbDadosSaida: TGroupBox;
     lyTempoAceleracaoLimiteSaida: TLayout;
     lvlTempoAceleracaoLimiteSaida: TLabel;
-    edtTempoAceleracaoLimiteSaida: TEdit;
+    edtTempoAceleracaoLimiteSaida: TNumberBox;
     lblTempoAceleracaoLimiteSaida: TLabel;
     menu: TMultiView;
     rctNavBar: TRectangle;
@@ -35,47 +36,47 @@ type
     lblTitle: TLabel;
     lyRendimentoTransmissaoEntrada: TLayout;
     lvlRendimentoTransmissao: TLabel;
-    edtRendimentoTransmissao: TEdit;
+    edtRendimentoTransmissao: TNumberBox;
     lblRendimentoTransmissao: TLabel;
     lyRelacaoTransmissaoEntrada: TLayout;
     lvlRelacaoTransmissao: TLabel;
-    edtRelacaoTransmissao: TEdit;
+    edtRelacaoTransmissao: TNumberBox;
     lblRelacaoTransmissao: TLabel;
     lyMomentoInerciaEntrada: TLayout;
     lvlMomentoInercia: TLabel;
-    edtMomentoInercia: TEdit;
+    edtMomentoInercia: TNumberBox;
     lblMomentoInercia: TLabel;
     lyConjugadoPartidaEntrada: TLayout;
     lvlConjugadoPartida: TLabel;
-    edtConjugadoPartida: TEdit;
+    edtConjugadoPartida: TNumberBox;
     lblConjugadoPartida: TLabel;
     lyConjugadoNominalEntrada: TLayout;
     lvlConjugadoNominal: TLabel;
-    edtConjugadoNominal: TEdit;
+    edtConjugadoNominal: TNumberBox;
     lblConjugadoNominal: TLabel;
     lyVelocidadeNominalEntrada: TLayout;
     lvlVelocidadeNominal: TLabel;
-    edtVelocidadeNominal: TEdit;
+    edtVelocidadeNominal: TNumberBox;
     lblVelocidadeNominal: TLabel;
     lyTempoRotorBloqueado: TLayout;
     lvlTempoRotorBloqueadoSaida: TLabel;
-    edtTempoRotorBloqueadoSaida: TEdit;
+    edtTempoRotorBloqueadoSaida: TNumberBox;
     lblTempoRotorBloqueadoSaida: TLabel;
     lyTempoAceleracaoSaida: TLayout;
     lvlTempoAceleracaoSaida: TLabel;
-    edtTempoAceleracaoSaida: TEdit;
+    edtTempoAceleracaoSaida: TNumberBox;
     lblTempoAceleracaoSaida: TLabel;
     lyConjugadoNominalSaida: TLayout;
     lvlConjugadoNominalSaida: TLabel;
-    edtConjugadoNominalSaida: TEdit;
+    edtConjugadoNominalSaida: TNumberBox;
     lblConjugadoNominalSaida: TLabel;
     lyVelocidadeNominalSaida: TLayout;
     lvlVelocidadeNominalSaida: TLabel;
-    edtVelocidadeNominalSaida: TEdit;
+    edtVelocidadeNominalSaida: TNumberBox;
     lblVelocidadeNominalSaida: TLabel;
     lyPotenciaNominalSaida: TLayout;
     lvlPotenciaNominalSaida: TLabel;
-    edtPotenciaNominalSaida: TEdit;
+    edtPotenciaNominalSaida: TNumberBox;
     lblPotenciaNominalSaida: TLabel;
     lytBotoes: TLayout;
     swFundo: TShadowEffect;
@@ -88,6 +89,8 @@ type
       Shift: TShiftState; X, Y: Single);
     procedure btmLimparClick(Sender: TObject);
     procedure btnCalcularClick(Sender: TObject);
+    procedure numberEnter(Sender: TObject);
+    procedure numberClick(Sender: TObject);
   private
     function GetParametrosCalcular: IEMParametrosCalcular;
     { Private declarations }
@@ -157,6 +160,16 @@ end;
 procedure TfrmPrincipal.btnFecharClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure TfrmPrincipal.numberClick(Sender: TObject);
+begin
+  (Sender as TNumberBox).SelectAll;
+end;
+
+procedure TfrmPrincipal.numberEnter(Sender: TObject);
+begin
+  (Sender as TNumberBox).SelectAll;
 end;
 
 // --------Funcões para movimentar a tela sem barra de titulo no windows ----//
