@@ -110,3 +110,7 @@ API
 Training
 Blog
 About
+*.~10~
+especMotoresProject.identcache
+Win32/Debug/Principal.dcu
+especMotoresProject.dproj.local
