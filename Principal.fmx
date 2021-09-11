@@ -1,7 +1,9 @@
 object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
-  BorderStyle = Single
+  Border.Styling = False
+  BorderIcons = []
+  BorderStyle = None
   Caption = 'Principal'
   ClientHeight = 581
   ClientWidth = 1031
@@ -44,7 +46,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 39
+        TabOrder = 40
         object lvlMomentoInerciaTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -85,7 +87,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 38
+        TabOrder = 39
         object lvlRendimentoTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -249,7 +251,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 37
+        TabOrder = 38
         object lvlConjugadoNominal: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
