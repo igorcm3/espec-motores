@@ -4,36 +4,37 @@ object frmPrincipal: TfrmPrincipal
   Border.Styling = False
   BorderIcons = []
   BorderStyle = None
-  Caption = 'Principal'
   ClientHeight = 581
-  ClientWidth = 1031
+  ClientWidth = 862
   Position = DesktopCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnMouseDown = FormMouseDown
+  OnMouseMove = FormMouseMove
+  OnMouseUp = FormMouseUp
   DesignerMasterStyle = 0
   object rctFundo: TRectangle
-    Align = Right
+    Align = Client
     Fill.Color = claWhite
     Padding.Left = 30.000000000000000000
     Padding.Top = 30.000000000000000000
     Padding.Right = 30.000000000000000000
     Padding.Bottom = 30.000000000000000000
-    Position.Y = 41.000000000000000000
-    Size.Width = 1031.000000000000000000
+    Size.Width = 862.000000000000000000
     Size.Height = 540.000000000000000000
     Size.PlatformDefault = False
-    Stroke.Kind = None
     object gbDadosEntrada: TGroupBox
+      Align = Left
       StyledSettings = [Size, FontColor, Other]
       Padding.Left = 10.000000000000000000
       Padding.Top = 30.000000000000000000
       Padding.Right = 10.000000000000000000
       Padding.Bottom = 20.000000000000000000
-      Position.X = 32.000000000000000000
-      Position.Y = 40.000000000000000000
+      Position.X = 30.000000000000000000
+      Position.Y = 30.000000000000000000
       Size.Width = 321.000000000000000000
-      Size.Height = 441.000000000000000000
+      Size.Height = 442.000000000000000000
       Size.PlatformDefault = False
       Text = 'Dados de entrada'
       TextSettings.Font.Family = 'JetBrains Mono'
@@ -41,8 +42,9 @@ object frmPrincipal: TfrmPrincipal
       TabOrder = 0
       object lyMomentoInerciaTransmissao: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 174.000000000000000000
+        Position.Y = 204.000000000000000000
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -50,7 +52,7 @@ object frmPrincipal: TfrmPrincipal
         object lvlMomentoInerciaTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 113.000000000000000000
+          Size.Width = 175.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -61,7 +63,7 @@ object frmPrincipal: TfrmPrincipal
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
-          Size.Width = 133.000000000000000000
+          Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
@@ -69,21 +71,23 @@ object frmPrincipal: TfrmPrincipal
           Align = Right
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 251.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 241.000000000000000000
+          Size.Width = 60.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[kg.m2]'
           TabOrder = 0
         end
       end
       object lyRendimentoTransmissaoEntrada: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 150.000000000000000000
+        Position.Y = 175.000000000000000000
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -91,7 +95,7 @@ object frmPrincipal: TfrmPrincipal
         object lvlRendimentoTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 113.000000000000000000
+          Size.Width = 175.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -102,7 +106,7 @@ object frmPrincipal: TfrmPrincipal
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
-          Size.Width = 133.000000000000000000
+          Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
@@ -110,21 +114,23 @@ object frmPrincipal: TfrmPrincipal
           Align = Right
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 251.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 241.000000000000000000
+          Size.Width = 60.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '['#951'%]'
           TabOrder = 0
         end
       end
       object lyRelacaoTransmissaoEntrada: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 126.000000000000000000
+        Position.Y = 146.000000000000000000
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -132,7 +138,7 @@ object frmPrincipal: TfrmPrincipal
         object lvlRelacaoTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 113.000000000000000000
+          Size.Width = 175.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -143,7 +149,7 @@ object frmPrincipal: TfrmPrincipal
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
-          Size.Width = 133.000000000000000000
+          Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
@@ -151,21 +157,23 @@ object frmPrincipal: TfrmPrincipal
           Align = Right
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 251.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 241.000000000000000000
+          Size.Width = 60.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[z%]'
           TabOrder = 0
         end
       end
       object lyMomentoInerciaEntrada: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 102.000000000000000000
+        Position.Y = 117.000000000000000000
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -173,7 +181,7 @@ object frmPrincipal: TfrmPrincipal
         object lvlMomentoInercia: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 113.000000000000000000
+          Size.Width = 175.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -184,7 +192,7 @@ object frmPrincipal: TfrmPrincipal
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
-          Size.Width = 133.000000000000000000
+          Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
@@ -192,21 +200,23 @@ object frmPrincipal: TfrmPrincipal
           Align = Right
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 251.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 241.000000000000000000
+          Size.Width = 60.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[kg.m2]'
           TabOrder = 0
         end
       end
       object lyConjugadoPartidaEntrada: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 78.000000000000000000
+        Position.Y = 88.000000000000000000
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -214,7 +224,7 @@ object frmPrincipal: TfrmPrincipal
         object lvlConjugadoPartida: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 113.000000000000000000
+          Size.Width = 175.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -225,7 +235,7 @@ object frmPrincipal: TfrmPrincipal
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
-          Size.Width = 133.000000000000000000
+          Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
@@ -233,21 +243,23 @@ object frmPrincipal: TfrmPrincipal
           Align = Right
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 251.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 241.000000000000000000
+          Size.Width = 60.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[N.m]'
           TabOrder = 0
         end
       end
       object lyConjugadoNominalEntrada: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 54.000000000000000000
+        Position.Y = 59.000000000000000000
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
@@ -255,7 +267,7 @@ object frmPrincipal: TfrmPrincipal
         object lvlConjugadoNominal: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 113.000000000000000000
+          Size.Width = 175.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -266,7 +278,7 @@ object frmPrincipal: TfrmPrincipal
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
-          Size.Width = 133.000000000000000000
+          Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
@@ -274,13 +286,14 @@ object frmPrincipal: TfrmPrincipal
           Align = Right
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 251.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 241.000000000000000000
+          Size.Width = 60.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[N.m]'
           TabOrder = 0
         end
@@ -296,7 +309,7 @@ object frmPrincipal: TfrmPrincipal
         object lvlVelocidadeNominal: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 113.000000000000000000
+          Size.Width = 175.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -307,7 +320,7 @@ object frmPrincipal: TfrmPrincipal
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
-          Size.Width = 133.000000000000000000
+          Size.Width = 61.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
@@ -315,28 +328,29 @@ object frmPrincipal: TfrmPrincipal
           Align = Right
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 251.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 241.000000000000000000
+          Size.Width = 60.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[rpm]'
           TabOrder = 0
         end
       end
     end
     object dbDadosSaida: TGroupBox
+      Align = Client
       StyledSettings = [Size, FontColor, Other]
       Padding.Left = 10.000000000000000000
       Padding.Top = 30.000000000000000000
       Padding.Right = 10.000000000000000000
       Padding.Bottom = 20.000000000000000000
-      Position.X = 376.000000000000000000
-      Position.Y = 40.000000000000000000
-      Size.Width = 601.000000000000000000
-      Size.Height = 441.000000000000000000
+      Margins.Left = 10.000000000000000000
+      Size.Width = 471.000000000000000000
+      Size.Height = 442.000000000000000000
       Size.PlatformDefault = False
       Text = 'Dados de sa'#237'da'
       TextSettings.Font.Family = 'JetBrains Mono'
@@ -344,16 +358,17 @@ object frmPrincipal: TfrmPrincipal
       TabOrder = 2
       object lyTempoAceleracaoLimiteSaida: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 150.000000000000000000
-        Size.Width = 581.000000000000000000
+        Position.Y = 175.000000000000000000
+        Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 43
         object lvlTempoAceleracaoLimiteSaida: TLabel
-          Align = Left
+          Align = Client
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 153.000000000000000000
+          Size.Width = 266.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -362,39 +377,42 @@ object frmPrincipal: TfrmPrincipal
         end
         object edtTempoAceleracaoLimiteSaida: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          Align = Client
+          Align = Right
           TabOrder = 2
-          Size.Width = 373.000000000000000000
+          Position.X = 266.000000000000000000
+          Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
         object lblTempoAceleracaoLimiteSaida: TLabel
-          Align = Right
+          Align = MostRight
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 531.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 371.000000000000000000
+          Size.Width = 80.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[s]'
           TabOrder = 0
         end
       end
       object lyTempoRotorBloqueado: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 126.000000000000000000
-        Size.Width = 581.000000000000000000
+        Position.Y = 146.000000000000000000
+        Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 41
         object lvlTempoRotorBloqueadoSaida: TLabel
-          Align = Left
+          Align = Client
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 153.000000000000000000
+          Size.Width = 266.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -403,39 +421,42 @@ object frmPrincipal: TfrmPrincipal
         end
         object edtTempoRotorBloqueadoSaida: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          Align = Client
+          Align = Right
           TabOrder = 2
-          Size.Width = 373.000000000000000000
+          Position.X = 266.000000000000000000
+          Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
         object lblTempoRotorBloqueadoSaida: TLabel
-          Align = Right
+          Align = MostRight
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 531.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 371.000000000000000000
+          Size.Width = 80.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[s]'
           TabOrder = 0
         end
       end
       object lyTempoAceleracaoSaida: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 102.000000000000000000
-        Size.Width = 581.000000000000000000
+        Position.Y = 117.000000000000000000
+        Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 40
         object lvlTempoAceleracaoSaida: TLabel
-          Align = Left
+          Align = Client
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 153.000000000000000000
+          Size.Width = 266.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -444,39 +465,42 @@ object frmPrincipal: TfrmPrincipal
         end
         object edtTempoAceleracaoSaida: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          Align = Client
+          Align = Right
           TabOrder = 2
-          Size.Width = 373.000000000000000000
+          Position.X = 266.000000000000000000
+          Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
         object lblTempoAceleracaoSaida: TLabel
-          Align = Right
+          Align = MostRight
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 531.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 371.000000000000000000
+          Size.Width = 80.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[s]'
           TabOrder = 0
         end
       end
       object lyConjugadoNominalSaida: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 78.000000000000000000
-        Size.Width = 581.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 39
         object lvlConjugadoNominalSaida: TLabel
-          Align = Left
+          Align = Client
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 153.000000000000000000
+          Size.Width = 266.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -485,39 +509,42 @@ object frmPrincipal: TfrmPrincipal
         end
         object edtConjugadoNominalSaida: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          Align = Client
+          Align = Right
           TabOrder = 2
-          Size.Width = 373.000000000000000000
+          Position.X = 266.000000000000000000
+          Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
         object lblConjugadoNominalSaida: TLabel
-          Align = Right
+          Align = MostRight
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 531.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 371.000000000000000000
+          Size.Width = 80.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[N.m]'
           TabOrder = 0
         end
       end
       object lyVelocidadeNominalSaida: TLayout
         Align = Top
+        Margins.Top = 5.000000000000000000
         Position.X = 10.000000000000000000
-        Position.Y = 54.000000000000000000
-        Size.Width = 581.000000000000000000
+        Position.Y = 59.000000000000000000
+        Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 42
         object lvlVelocidadeNominalSaida: TLabel
-          Align = Left
+          Align = Client
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 153.000000000000000000
+          Size.Width = 266.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -526,23 +553,25 @@ object frmPrincipal: TfrmPrincipal
         end
         object edtVelocidadeNominalSaida: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          Align = Client
+          Align = Right
           TabOrder = 2
-          Size.Width = 373.000000000000000000
+          Position.X = 266.000000000000000000
+          Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
         object lblVelocidadeNominalSaida: TLabel
-          Align = Right
+          Align = MostRight
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 531.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 371.000000000000000000
+          Size.Width = 80.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[rpm]'
           TabOrder = 0
         end
@@ -551,14 +580,14 @@ object frmPrincipal: TfrmPrincipal
         Align = Top
         Position.X = 10.000000000000000000
         Position.Y = 30.000000000000000000
-        Size.Width = 581.000000000000000000
+        Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 38
         object lvlPotenciaNominalSaida: TLabel
-          Align = Left
+          Align = Client
           StyledSettings = [Size, Style, FontColor]
-          Size.Width = 153.000000000000000000
+          Size.Width = 266.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
@@ -567,79 +596,100 @@ object frmPrincipal: TfrmPrincipal
         end
         object edtPotenciaNominalSaida: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          Align = Client
+          Align = Right
           TabOrder = 2
-          Size.Width = 373.000000000000000000
+          Position.X = 266.000000000000000000
+          Size.Width = 100.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
         end
         object lblPotenciaNominalSaida: TLabel
-          Align = Right
+          Align = MostRight
           StyledSettings = []
           Margins.Left = 5.000000000000000000
-          Position.X = 531.000000000000000000
-          Size.Width = 50.000000000000000000
+          Position.X = 371.000000000000000000
+          Size.Width = 80.000000000000000000
           Size.Height = 24.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Family = 'JetBrains Mono'
           TextSettings.Font.Size = 11.000000000000000000
           TextSettings.FontColor = claCrimson
+          TextSettings.HorzAlign = Center
           Text = '[kW]'
           TabOrder = 0
         end
       end
     end
-    object rctBtnCalcular: TRectangle
-      Fill.Color = claDarkslategray
-      Position.X = 32.000000000000000000
-      Position.Y = 488.000000000000000000
-      Size.Width = 321.000000000000000000
+    object lytBotoes: TLayout
+      Align = Bottom
+      Margins.Top = 5.000000000000000000
+      Position.X = 30.000000000000000000
+      Position.Y = 477.000000000000000000
+      Size.Width = 802.000000000000000000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
-      Stroke.Kind = None
-      object btnCalcular: TSpeedButton
-        Align = Client
-        StyledSettings = []
+      TabOrder = 3
+      object rctBtnCalcular: TRectangle
+        Align = Left
+        Fill.Color = claDarkslategray
         Size.Width = 321.000000000000000000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
-        Text = 'CALCULAR'
-        TextSettings.Font.Family = 'Consolas'
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.FontColor = claWhite
+        Stroke.Kind = None
+        object btnCalcular: TSpeedButton
+          Align = Client
+          StyledSettings = []
+          Size.Width = 321.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'CALCULAR'
+          TextSettings.Font.Family = 'Consolas'
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claWhite
+        end
       end
-    end
-    object rctLimpar: TRectangle
-      Fill.Color = claDarkgray
-      Position.X = 864.000000000000000000
-      Position.Y = 488.000000000000000000
-      Size.Width = 113.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Kind = None
-      object btmLimpar: TSpeedButton
-        Align = Client
-        StyledSettings = []
+      object rctLimpar: TRectangle
+        Align = Right
+        Fill.Color = claDarkgray
+        Position.X = 689.000000000000000000
         Size.Width = 113.000000000000000000
         Size.Height = 33.000000000000000000
         Size.PlatformDefault = False
-        Text = 'LIMPAR'
-        TextSettings.Font.Family = 'Consolas'
-        TextSettings.Font.Size = 18.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.FontColor = claWhite
+        Stroke.Kind = None
+        object btmLimpar: TSpeedButton
+          Align = Client
+          StyledSettings = []
+          Size.Width = 113.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'LIMPAR'
+          TextSettings.Font.Family = 'Consolas'
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claWhite
+        end
       end
+    end
+    object swFundo: TShadowEffect
+      Distance = 3.000000000000000000
+      Direction = 45.000000000000000000
+      Softness = 0.200000002980232200
+      Opacity = 0.200000002980232200
+      ShadowColor = claBlack
     end
   end
   object rctNavBar: TRectangle
     Align = Top
     Fill.Color = claBlack
-    Size.Width = 1031.000000000000000000
+    Size.Width = 862.000000000000000000
     Size.Height = 41.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
-    object ShadowEffect1: TShadowEffect
+    OnMouseDown = FormMouseDown
+    OnMouseMove = FormMouseMove
+    OnMouseUp = FormMouseUp
+    object swEff: TShadowEffect
       Distance = 3.000000000000000000
       Direction = 45.000000000000000000
       Softness = 0.200000002980232200
@@ -664,7 +714,7 @@ object frmPrincipal: TfrmPrincipal
       StyledSettings = [Family, Size, Style]
       Padding.Left = 10.000000000000000000
       Margins.Left = 5.000000000000000000
-      Position.X = 983.000000000000000000
+      Position.X = 814.000000000000000000
       Size.Width = 48.000000000000000000
       Size.Height = 41.000000000000000000
       Size.PlatformDefault = False
@@ -684,6 +734,9 @@ object frmPrincipal: TfrmPrincipal
       TextSettings.FontColor = claWhite
       Text = 'Especifica'#231#227'o de motores el'#233'tricos'
       TabOrder = 4
+      OnMouseDown = FormMouseDown
+      OnMouseMove = FormMouseMove
+      OnMouseUp = FormMouseUp
     end
   end
   object menu: TMultiView

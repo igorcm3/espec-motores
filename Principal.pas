@@ -27,7 +27,7 @@ type
     lblTempoAceleracaoLimiteSaida: TLabel;
     menu: TMultiView;
     rctNavBar: TRectangle;
-    ShadowEffect1: TShadowEffect;
+    swEff: TShadowEffect;
     btnChamaMenu: TSpeedButton;
     btnFechar: TSpeedButton;
     rctMenu: TRectangle;
@@ -77,11 +77,20 @@ type
     lvlPotenciaNominalSaida: TLabel;
     edtPotenciaNominalSaida: TEdit;
     lblPotenciaNominalSaida: TLabel;
+    lytBotoes: TLayout;
+    swFundo: TShadowEffect;
     procedure btnChamaMenuClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
+    procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Single);
+    procedure FormMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
   private
     { Private declarations }
   public
+    isDraging: boolean;
+    X0, Y0: single;
     { Public declarations }
   end;
 
@@ -101,6 +110,35 @@ procedure TfrmPrincipal.btnFecharClick(Sender: TObject);
 begin
   Application.Terminate;
 end;
+
+// --------Funcões para movimentar a tela sem barra de titulo no windows ----//
+
+procedure TfrmPrincipal.FormMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  isDraging := True;
+  X0 := X;
+  Y0 := Y;
+end;
+
+procedure TfrmPrincipal.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Single);
+begin
+  if isDraging then
+  begin
+    frmPrincipal.Left := Trunc(frmPrincipal.Left + X - X0);
+    frmPrincipal.Top := Trunc(frmPrincipal.Top + Y - Y0);
+  end;
+end;
+
+procedure TfrmPrincipal.FormMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  isDraging := False;
+end;
+
+// -------- FIM Funcões para movimentar a tela ---//
+
 
 
 end.
