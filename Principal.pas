@@ -138,18 +138,25 @@ procedure TfrmPrincipal.btnCalcularClick(Sender: TObject);
 var
   AoValoresCalculados: IEMValoresCalculados;
 begin
-///  AoValoresCalculados := TEMCalcular.New().Calcular;
+  AoValoresCalculados := TEMCalcular.New(GetParametrosCalcular).Calcular;
+
+  edtPotenciaNominalSaida.Value := AoValoresCalculados.GetPotenciaNominal;
+  edtVelocidadeNominalSaida.Value := AoValoresCalculados.GetVelocidadeNominal;
+  edtConjugadoNominalSaida.Value := AoValoresCalculados.GetConjugadoNominal;
+  edtTempoAceleracaoSaida.Value := AoValoresCalculados.GetTempoAceleracao;
+  edtTempoRotorBloqueadoSaida.Value := AoValoresCalculados.GetTempoRotorBloqueado;
+  edtTempoAceleracaoLimiteSaida.Value := AoValoresCalculados.GetTempoAceleracaoLimite;
 end;
 
 function TfrmPrincipal.GetParametrosCalcular: IEMParametrosCalcular;
 begin
-  {Result := TEMParametrosCalcular.New(edtVelocidadeNominal.Text,
-                                      edtConjugadoNominal.Text,
-                                      edtConjugadoPartida.Text,
-                                      edtMomentoInercia.Text,
-                                      edtRelacaoTransmissao.Text,
-                                      edtRendimentoTransmissao.Text,
-                                      edtMomentoInerciaTransmissao.Text);}
+  Result := TEMParametrosCalcular.New(edtVelocidadeNominal.Value,
+                                      edtConjugadoNominal.Value,
+                                      edtConjugadoPartida.Value,
+                                      edtMomentoInercia.Value,
+                                      edtRelacaoTransmissao.Value,
+                                      edtRendimentoTransmissao.Value,
+                                      edtMomentoInerciaTransmissao.Value);
 end;
 
 procedure TfrmPrincipal.btnChamaMenuClick(Sender: TObject);
