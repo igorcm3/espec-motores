@@ -86,6 +86,7 @@ type
     procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Single);
     procedure FormMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
+    procedure btmLimparClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -100,6 +101,31 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmPrincipal.btmLimparClick(Sender: TObject);
+begin
+  // Limpa todos os inputs da tela
+
+  // Entradas
+  edtVelocidadeNominal.Text := EmptyStr;
+  edtConjugadoNominal.Text := EmptyStr;
+  edtConjugadoPartida.Text := EmptyStr;
+  edtMomentoInercia.Text := EmptyStr;
+  edtRelacaoTransmissao.Text := EmptyStr;
+  edtRendimentoTransmissao.Text := EmptyStr;
+  edtMomentoInerciaTransmissao.Text := EmptyStr;
+
+  //Saídas
+  edtPotenciaNominalSaida.Text := EmptyStr;
+  edtVelocidadeNominalSaida.Text := EmptyStr;
+  edtConjugadoNominalSaida.Text := EmptyStr;
+  edtTempoAceleracaoSaida.Text := EmptyStr;
+  edtTempoRotorBloqueadoSaida.Text := EmptyStr;
+  edtTempoAceleracaoLimiteSaida.Text := EmptyStr;
+
+  edtVelocidadeNominal.SetFocus;
+
+end;
 
 procedure TfrmPrincipal.btnChamaMenuClick(Sender: TObject);
 begin
@@ -137,7 +163,7 @@ begin
   isDraging := False;
 end;
 
-// -------- FIM Funcões para movimentar a tela ---//
+// ------------- FIM Funcões para movimentar a tela ------------------------//
 
 
 

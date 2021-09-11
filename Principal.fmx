@@ -22,7 +22,7 @@ object frmPrincipal: TfrmPrincipal
     Padding.Right = 30.000000000000000000
     Padding.Bottom = 30.000000000000000000
     Size.Width = 862.000000000000000000
-    Size.Height = 540.000000000000000000
+    Size.Height = 531.000000000000000000
     Size.PlatformDefault = False
     object gbDadosEntrada: TGroupBox
       Align = Left
@@ -34,7 +34,7 @@ object frmPrincipal: TfrmPrincipal
       Position.X = 30.000000000000000000
       Position.Y = 30.000000000000000000
       Size.Width = 321.000000000000000000
-      Size.Height = 442.000000000000000000
+      Size.Height = 433.000000000000000000
       Size.PlatformDefault = False
       Text = 'Dados de entrada'
       TextSettings.Font.Family = 'JetBrains Mono'
@@ -350,7 +350,7 @@ object frmPrincipal: TfrmPrincipal
       Padding.Bottom = 20.000000000000000000
       Margins.Left = 10.000000000000000000
       Size.Width = 471.000000000000000000
-      Size.Height = 442.000000000000000000
+      Size.Height = 433.000000000000000000
       Size.PlatformDefault = False
       Text = 'Dados de sa'#237'da'
       TextSettings.Font.Family = 'JetBrains Mono'
@@ -624,7 +624,7 @@ object frmPrincipal: TfrmPrincipal
       Align = Bottom
       Margins.Top = 5.000000000000000000
       Position.X = 30.000000000000000000
-      Position.Y = 477.000000000000000000
+      Position.Y = 468.000000000000000000
       Size.Width = 802.000000000000000000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
@@ -668,6 +668,7 @@ object frmPrincipal: TfrmPrincipal
           TextSettings.Font.Size = 18.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.FontColor = claWhite
+          OnClick = btmLimparClick
         end
       end
     end
@@ -683,7 +684,7 @@ object frmPrincipal: TfrmPrincipal
     Align = Top
     Fill.Color = claBlack
     Size.Width = 862.000000000000000000
-    Size.Height = 41.000000000000000000
+    Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
     OnMouseDown = FormMouseDown
@@ -702,7 +703,7 @@ object frmPrincipal: TfrmPrincipal
       Margins.Left = 5.000000000000000000
       Position.X = 5.000000000000000000
       Size.Width = 48.000000000000000000
-      Size.Height = 41.000000000000000000
+      Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'detailstoolbutton'
       Text = 'btnChamaMenu'
@@ -716,7 +717,7 @@ object frmPrincipal: TfrmPrincipal
       Margins.Left = 5.000000000000000000
       Position.X = 814.000000000000000000
       Size.Width = 48.000000000000000000
-      Size.Height = 41.000000000000000000
+      Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'cleareditbutton'
       Text = 'btnChamaMenu'
@@ -728,7 +729,7 @@ object frmPrincipal: TfrmPrincipal
       StyledSettings = [Family, Style]
       Position.X = 53.000000000000000000
       Size.Width = 400.000000000000000000
-      Size.Height = 41.000000000000000000
+      Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 20.000000000000000000
       TextSettings.FontColor = claWhite
