@@ -9,7 +9,8 @@ uses
   uIEMParametrosCalcular in 'uIEMParametrosCalcular.pas',
   uEMCalcular in 'uEMCalcular.pas',
   uEMValoresCalculados in 'uEMValoresCalculados.pas',
-  uEMParametrosCalcular in 'uEMParametrosCalcular.pas';
+  uEMParametrosCalcular in 'uEMParametrosCalcular.pas',
+  uMemTableHelper in 'uMemTableHelper.pas';
 
 {$R *.res}
 
