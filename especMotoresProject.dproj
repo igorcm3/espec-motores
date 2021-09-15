@@ -137,6 +137,7 @@
         <DCCReference Include="uEMCalcular.pas"/>
         <DCCReference Include="uEMValoresCalculados.pas"/>
         <DCCReference Include="uEMParametrosCalcular.pas"/>
+        <DCCReference Include="uMemTableHelper.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
