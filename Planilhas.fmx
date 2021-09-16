@@ -1,0 +1,196 @@
+object frmPlanilhas: TfrmPlanilhas
+  Left = 0
+  Top = 0
+  Border.Styling = False
+  BorderIcons = []
+  BorderStyle = None
+  ClientHeight = 581
+  ClientWidth = 862
+  Position = DesktopCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object rctFundo: TRectangle
+    Align = Client
+    Fill.Color = claWhite
+    Padding.Left = 30.000000000000000000
+    Padding.Top = 30.000000000000000000
+    Padding.Right = 30.000000000000000000
+    Padding.Bottom = 30.000000000000000000
+    Size.Width = 862.000000000000000000
+    Size.Height = 531.000000000000000000
+    Size.PlatformDefault = False
+    object swFundo: TShadowEffect
+      Distance = 3.000000000000000000
+      Direction = 45.000000000000000000
+      Softness = 0.200000002980232200
+      Opacity = 0.200000002980232200
+      ShadowColor = claBlack
+    end
+    object tcPlanilhas: TTabControl
+      Align = Client
+      Size.Width = 802.000000000000000000
+      Size.Height = 471.000000000000000000
+      Size.PlatformDefault = False
+      TabIndex = 0
+      TabOrder = 0
+      TabPosition = PlatformDefault
+      Sizes = (
+        802s
+        445s
+        802s
+        445s
+        802s
+        445s
+        802s
+        445s)
+      object tiDoisPolos: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 76.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Dois Polos'
+        ExplicitSize.cx = 76.000000000000000000
+        ExplicitSize.cy = 26.000000000000000000
+        object grdDoisPolos: TStringGrid
+          Align = Client
+          CanFocus = True
+          ClipChildren = True
+          Size.Width = 802.000000000000000000
+          Size.Height = 445.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
+          Viewport.Width = 798.000000000000000000
+          Viewport.Height = 420.000000000000000000
+        end
+      end
+      object tiQuatroPolos: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 89.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Quatro Polos'
+        ExplicitSize.cx = 89.000000000000000000
+        ExplicitSize.cy = 26.000000000000000000
+        object grdQuatroPolos: TStringGrid
+          Align = Client
+          CanFocus = True
+          ClipChildren = True
+          Size.Width = 802.000000000000000000
+          Size.Height = 445.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
+          Viewport.Width = 798.000000000000000000
+          Viewport.Height = 420.000000000000000000
+        end
+      end
+      object tiSeisPolos: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 73.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Seis Polos'
+        ExplicitSize.cx = 73.000000000000000000
+        ExplicitSize.cy = 26.000000000000000000
+        object grdSeisPolos: TStringGrid
+          Align = Client
+          CanFocus = True
+          ClipChildren = True
+          Size.Width = 802.000000000000000000
+          Size.Height = 445.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
+          Viewport.Width = 798.000000000000000000
+          Viewport.Height = 420.000000000000000000
+        end
+      end
+      object tiOitoPolos: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 75.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'Oito Polos'
+        ExplicitSize.cx = 75.000000000000000000
+        ExplicitSize.cy = 26.000000000000000000
+        object grdOitoPolos: TStringGrid
+          Align = Client
+          CanFocus = True
+          ClipChildren = True
+          Size.Width = 802.000000000000000000
+          Size.Height = 445.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
+          Viewport.Width = 798.000000000000000000
+          Viewport.Height = 420.000000000000000000
+        end
+      end
+    end
+  end
+  object rctNavBar: TRectangle
+    Align = Top
+    Fill.Color = claBlack
+    Size.Width = 862.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object swEff: TShadowEffect
+      Distance = 3.000000000000000000
+      Direction = 45.000000000000000000
+      Softness = 0.200000002980232200
+      Opacity = 0.200000002980232200
+      ShadowColor = claBlack
+    end
+    object btnFechar: TSpeedButton
+      Align = Right
+      StyledSettings = [Family, Size, Style]
+      Padding.Left = 10.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Position.X = 814.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'cleareditbutton'
+      Text = 'btnChamaMenu'
+      TextSettings.FontColor = claNull
+      OnClick = btnFecharClick
+    end
+    object lblTitle: TLabel
+      Align = Left
+      StyledSettings = [Family, Style]
+      Margins.Left = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = claWhite
+      Text = 'Especifica'#231#227'o de motores el'#233'tricos'
+      TabOrder = 4
+    end
+  end
+end

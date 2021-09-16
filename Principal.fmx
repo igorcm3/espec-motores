@@ -10,6 +10,7 @@ object frmPrincipal: TfrmPrincipal
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object rctFundo: TRectangle
     Align = Client
@@ -45,7 +46,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 37
+        TabOrder = 38
         object lvlMomentoInerciaTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -724,6 +725,7 @@ object frmPrincipal: TfrmPrincipal
           TextSettings.Font.Size = 18.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.FontColor = claWhite
+          OnClick = btnCalcularClick
         end
       end
       object rctLimpar: TRectangle
@@ -836,7 +838,7 @@ object frmPrincipal: TfrmPrincipal
       Size.Height = 531.000000000000000000
       Size.PlatformDefault = False
       Stroke.Kind = None
-      object btnMenuCalcular: TSpeedButton
+      object btnPlanilhas: TSpeedButton
         Align = Top
         StyledSettings = []
         Position.X = 7.000000000000000000
@@ -844,12 +846,141 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 155.000000000000000000
         Size.Height = 28.000000000000000000
         Size.PlatformDefault = False
-        Text = 'CALCULAR'
+        Text = 'PLANILHAS'
+        TextSettings.Font.Family = 'Roboto'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.FontColor = claWhite
+        OnClick = btnPlanilhasClick
+      end
+      object btnSobre: TSpeedButton
+        Align = Top
+        StyledSettings = []
+        Position.X = 7.000000000000000000
+        Position.Y = 48.000000000000000000
+        Size.Width = 155.000000000000000000
+        Size.Height = 28.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'SOBRE'
         TextSettings.Font.Family = 'Roboto'
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00070000000000000004000000}
         TextSettings.FontColor = claWhite
       end
     end
+  end
+  object bmReaderDoisPolos: TFDBatchMoveTextReader
+    DataDef.Fields = <>
+    Left = 64
+    Top = 328
+  end
+  object bmDoisPolos: TFDBatchMove
+    Reader = bmReaderDoisPolos
+    Writer = bmWriterDoisPolos
+    Mappings = <>
+    LogFileName = 'Data.log'
+    Left = 32
+    Top = 328
+  end
+  object bmTableDoisPolos: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 128
+    Top = 328
+  end
+  object bmWriterDoisPolos: TFDBatchMoveDataSetWriter
+    DataSet = bmTableDoisPolos
+    Left = 94
+    Top = 328
+  end
+  object bmQuatroPolos: TFDBatchMove
+    Mappings = <>
+    LogFileName = 'Data.log'
+    Left = 32
+    Top = 400
+  end
+  object bmReaderQuatroPolos: TFDBatchMoveTextReader
+    DataDef.Fields = <>
+    Left = 64
+    Top = 400
+  end
+  object bmTableQuatroPolos: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 96
+    Top = 400
+  end
+  object bmWriterQuatroPolos: TFDBatchMoveDataSetWriter
+    DataSet = bmTableQuatroPolos
+    Left = 126
+    Top = 400
+  end
+  object bmSeisPolos: TFDBatchMove
+    Reader = bmReaderSeisPolos
+    Writer = bmWriterSeisPolos
+    Mappings = <>
+    LogFileName = 'Data.log'
+    Left = 200
+    Top = 328
+  end
+  object bmReaderSeisPolos: TFDBatchMoveTextReader
+    DataDef.Fields = <>
+    Left = 232
+    Top = 328
+  end
+  object bmTableSeisPolos: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 264
+    Top = 328
+  end
+  object bmWriterSeisPolos: TFDBatchMoveDataSetWriter
+    DataSet = bmTableSeisPolos
+    Left = 294
+    Top = 328
+  end
+  object bmOitoPolos: TFDBatchMove
+    Reader = bmReaderOitoPolos
+    Writer = bmWriterOitoPolos
+    Mappings = <>
+    LogFileName = 'Data.log'
+    Left = 200
+    Top = 400
+  end
+  object bmReaderOitoPolos: TFDBatchMoveTextReader
+    DataDef.Fields = <>
+    Left = 232
+    Top = 400
+  end
+  object bmTableOitoPolos: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 264
+    Top = 400
+  end
+  object bmWriterOitoPolos: TFDBatchMoveDataSetWriter
+    DataSet = bmTableOitoPolos
+    Left = 294
+    Top = 400
   end
 end

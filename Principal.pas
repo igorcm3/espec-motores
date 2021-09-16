@@ -7,7 +7,11 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl, FMX.Edit, FMX.Layouts,
   FMX.Ani, FMX.Effects, FMX.Menus, FMX.MultiView, uIEMParametrosCalcular,
-  FMX.EditBox, FMX.NumberBox;
+  FMX.EditBox, FMX.NumberBox, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Comp.BatchMove.DataSet, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Comp.BatchMove,
+  FireDAC.Comp.BatchMove.Text, FireDAC.FMXUI.Wait;
 
 type
   TfrmPrincipal = class(TForm)
@@ -32,7 +36,7 @@ type
     btnChamaMenu: TSpeedButton;
     btnFechar: TSpeedButton;
     rctMenu: TRectangle;
-    btnMenuCalcular: TSpeedButton;
+    btnPlanilhas: TSpeedButton;
     lblTitle: TLabel;
     lyRendimentoTransmissaoEntrada: TLayout;
     lvlRendimentoTransmissao: TLabel;
@@ -80,6 +84,23 @@ type
     lblPotenciaNominalSaida: TLabel;
     lytBotoes: TLayout;
     swFundo: TShadowEffect;
+    btnSobre: TSpeedButton;
+    bmReaderDoisPolos: TFDBatchMoveTextReader;
+    bmDoisPolos: TFDBatchMove;
+    bmTableDoisPolos: TFDMemTable;
+    bmWriterDoisPolos: TFDBatchMoveDataSetWriter;
+    bmQuatroPolos: TFDBatchMove;
+    bmReaderQuatroPolos: TFDBatchMoveTextReader;
+    bmTableQuatroPolos: TFDMemTable;
+    bmWriterQuatroPolos: TFDBatchMoveDataSetWriter;
+    bmSeisPolos: TFDBatchMove;
+    bmReaderSeisPolos: TFDBatchMoveTextReader;
+    bmTableSeisPolos: TFDMemTable;
+    bmWriterSeisPolos: TFDBatchMoveDataSetWriter;
+    bmOitoPolos: TFDBatchMove;
+    bmReaderOitoPolos: TFDBatchMoveTextReader;
+    bmTableOitoPolos: TFDMemTable;
+    bmWriterOitoPolos: TFDBatchMoveDataSetWriter;
     procedure btnChamaMenuClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
@@ -91,8 +112,12 @@ type
     procedure btnCalcularClick(Sender: TObject);
     procedure numberEnter(Sender: TObject);
     procedure numberClick(Sender: TObject);
+    procedure btnPlanilhasClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     function GetParametrosCalcular: IEMParametrosCalcular;
+    function ValidarParametros: Boolean;
+    procedure FocaComponente(AoNumberBox: TNumberBox);
     { Private declarations }
   public
     isDraging: boolean;
@@ -106,7 +131,8 @@ var
 implementation
 
 uses
-  uEMValoresCalculados, uIEMValoresCalculados, uEMCalcular, uEMParametrosCalcular;
+  uEMValoresCalculados, uIEMValoresCalculados, uEMCalcular, uEMParametrosCalcular,
+  Planilhas;
 
 {$R *.fmx}
 
@@ -129,6 +155,9 @@ procedure TfrmPrincipal.btnCalcularClick(Sender: TObject);
 var
   AoValoresCalculados: IEMValoresCalculados;
 begin
+  if (not ValidarParametros) then
+    Exit;
+
   AoValoresCalculados := TEMCalcular.New(GetParametrosCalcular).Calcular;
 
   edtPotenciaNominalSaida.Value := AoValoresCalculados.GetPotenciaNominal;
@@ -147,7 +176,11 @@ begin
                                       edtMomentoInercia.Value,
                                       edtRelacaoTransmissao.Value,
                                       edtRendimentoTransmissao.Value,
-                                      edtMomentoInerciaTransmissao.Value);
+                                      edtMomentoInerciaTransmissao.Value,
+                                      bmTableDoisPolos,
+                                      bmTableQuatroPolos,
+                                      bmTableSeisPolos,
+                                      bmTableOitoPolos);
 end;
 
 procedure TfrmPrincipal.btnChamaMenuClick(Sender: TObject);
@@ -160,6 +193,18 @@ begin
   Application.Terminate;
 end;
 
+procedure TfrmPrincipal.btnPlanilhasClick(Sender: TObject);
+var
+  formPlanilhas: TfrmPlanilhas;
+begin
+  formPlanilhas := TfrmPlanilhas.Create(nil);
+  try
+    formPlanilhas.AbrirForm(bmTableDoisPolos, bmTableQuatroPolos, bmTableSeisPolos, bmTableOitoPolos);
+  finally
+    FreeAndNil(formPlanilhas)
+  end;
+end;
+
 procedure TfrmPrincipal.numberClick(Sender: TObject);
 begin
   (Sender as TNumberBox).SelectAll;
@@ -168,6 +213,128 @@ end;
 procedure TfrmPrincipal.numberEnter(Sender: TObject);
 begin
   (Sender as TNumberBox).SelectAll;
+end;
+
+function TfrmPrincipal.ValidarParametros: Boolean;
+const
+  msgPlanilha = 'A planilha de "%s" não foi encontrada na pasta do projeto!';
+  msgValorNaoInformado = 'O valor referente ao campo "%s" não foi informado!';
+
+var
+  cMsg: String;
+begin
+  Result := True;
+
+  try
+    cMsg := EmptyStr;
+
+    if (not bmTableDoisPolos.Active) or (bmTableDoisPolos.IsEmpty) then begin
+      cMsg := Format(msgPlanilha, ['Dois Polos']);
+      Exit;
+    end;
+
+    if (not bmTableQuatroPolos.Active) or (bmTableQuatroPolos.IsEmpty) then begin
+      cMsg := Format(msgPlanilha, ['Quatro Polos']);
+      Exit;
+    end;
+
+    if (not bmTableSeisPolos.Active) or (bmTableSeisPolos.IsEmpty) then begin
+      cMsg := Format(msgPlanilha, ['Seis Polos']);
+      Exit;
+    end;
+
+    if (not bmTableOitoPolos.Active) or (bmTableOitoPolos.IsEmpty) then begin
+      cMsg := Format(msgPlanilha, ['Oito Polos']);
+      Exit;
+    end;
+
+    if (edtVelocidadeNominal.Value = 0) then begin
+      cMsg := Format(msgValorNaoInformado, [lvlVelocidadeNominal.Text]);
+      FocaComponente(edtVelocidadeNominal);
+      Exit;
+    end;
+
+    if (edtConjugadoNominal.Value = 0) then begin
+      cMsg := Format(msgValorNaoInformado, [lvlConjugadoNominal.Text]);
+      FocaComponente(edtConjugadoNominal);
+      Exit;
+    end;
+
+    if (edtConjugadoPartida.Value = 0) then begin
+      cMsg := Format(msgValorNaoInformado, [lvlConjugadoPartida.Text]);
+      FocaComponente(edtConjugadoPartida);
+      Exit;
+    end;
+
+    if (edtMomentoInercia.Value = 0) then begin
+      cMsg := Format(msgValorNaoInformado, [lvlMomentoInercia.Text]);
+      FocaComponente(edtMomentoInercia);
+      Exit;
+    end;
+
+    if (edtRelacaoTransmissao.Value = 0) then begin
+      cMsg := Format(msgValorNaoInformado, [lvlRelacaoTransmissao.Text]);
+      FocaComponente(edtRelacaoTransmissao);
+      Exit;
+    end;
+
+    if (edtRendimentoTransmissao.Value = 0) then begin
+      cMsg := Format(msgValorNaoInformado, [lvlRendimentoTransmissao.Text]);
+      FocaComponente(edtRendimentoTransmissao);
+      Exit;
+    end;
+
+    if (edtMomentoInerciaTransmissao.Value = 0) then begin
+      cMsg := Format(msgValorNaoInformado, [lvlMomentoInerciaTransmissao.Text]);
+      FocaComponente(edtMomentoInerciaTransmissao);
+      Exit;
+    end;
+
+  finally
+    if (cMsg <> EmptyStr) then begin
+      Result := False;
+      MessageDlg(cMsg,TMsgDlgType.mtwarning, [TMsgDlgBtn.mbok], 0);
+    end;
+  end;
+end;
+
+procedure TfrmPrincipal.FocaComponente(AoNumberBox: TNumberBox);
+begin
+  if (AoNumberBox.CanFocus) then
+    AoNumberBox.SetFocus;
+end;
+
+procedure TfrmPrincipal.FormShow(Sender: TObject);
+const
+  caminhoArquivo = 'D:\GitHub\espec-motores\Arquivos\CSV\';
+begin
+  try
+    bmReaderDoisPolos.FileName := caminhoArquivo + 'DoisPolos.csv';
+    bmDoisPolos.GuessFormat;
+    bmDoisPolos.Execute;
+  except
+  end;
+
+  try
+    bmReaderQuatroPolos.FileName := caminhoArquivo + 'QuatroPolos.csv';
+    bmQuatroPolos.GuessFormat;
+    bmQuatroPolos.Execute;
+  except
+  end;
+
+  try
+    bmReaderSeisPolos.FileName := caminhoArquivo + 'SeisPolos.csv';
+    bmSeisPolos.GuessFormat;
+    bmSeisPolos.Execute;
+  except
+  end;
+
+  try
+    bmReaderOitoPolos.FileName := caminhoArquivo + 'OitoPolos.csv';
+    bmOitoPolos.GuessFormat;
+    bmOitoPolos.Execute;
+  except
+  end;
 end;
 
 // --------Funcões para movimentar a tela sem barra de titulo no windows ----//

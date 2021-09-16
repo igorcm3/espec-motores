@@ -3,7 +3,7 @@ unit uEMParametrosCalcular;
 interface
 
 uses
-  uIEMParametrosCalcular;
+  uIEMParametrosCalcular, FireDAC.Comp.Client;
 
 type
   TEMParametrosCalcular = class(TInterfacedObject, IEMParametrosCalcular)
@@ -15,6 +15,10 @@ type
     FnRelacaoTransmissao: Extended;
     FnRendimentoTransmissao: Extended;
     FnMomentoInerciaTransmissao: Extended;
+    FoTableDoisPolos: TFDMemTable;
+    FoTableQuatroPolos: TFDMemTable;
+    FoTableSeisPolos: TFDMemTable;
+    FoTableOitoPolos: TFDMemTable;
     function GetVelocidadeNominal: Extended;
     function GetConjugadoNominal: Extended;
     function GetConjugadoPartida: Extended;
@@ -22,13 +26,19 @@ type
     function GetRelacaoTransmissao: Extended;
     function GetRendimentoTransmissao: Extended;
     function GetMomentoInerciaTransmissao: Extended;
+    function GetTableDoisPolos: TFDMemTable;
+    function GetTableQuatroPolos: TFDMemTable;
+    function GetTableSeisPolos: TFDMemTable;
+    function GetTableOitoPolos: TFDMemTable;
   public
     class function New(AnVelocNominal, AnConjugadoNominal, AnConjugadoPartida,
       AnMomentoInercia, AnRelacaoTransmissao, AnRendimentoTransmissao,
-      AnMomentoInerciaTransmissao: Extended): IEMParametrosCalcular;
+      AnMomentoInerciaTransmissao: Extended; AoTableDoisPolos, AoTableQuatroPolos,
+      AoTableSeisPolos, AoTableOitoPolos: TFDMemTable): IEMParametrosCalcular;
     constructor Create(AnVelocNominal, AnConjugadoNominal, AnConjugadoPartida,
       AnMomentoInercia, AnRelacaoTransmissao, AnRendimentoTransmissao,
-      AnMomentoInerciaTransmissao: Extended);
+      AnMomentoInerciaTransmissao: Extended; AoTableDoisPolos, AoTableQuatroPolos,
+      AoTableSeisPolos, AoTableOitoPolos: TFDMemTable);
   end;
 
 implementation
@@ -37,7 +47,8 @@ implementation
 
 constructor TEMParametrosCalcular.Create(AnVelocNominal, AnConjugadoNominal,
   AnConjugadoPartida, AnMomentoInercia, AnRelacaoTransmissao, AnRendimentoTransmissao,
-  AnMomentoInerciaTransmissao: Extended);
+  AnMomentoInerciaTransmissao: Extended; AoTableDoisPolos, AoTableQuatroPolos,
+  AoTableSeisPolos, AoTableOitoPolos: TFDMemTable);
 begin
   inherited Create();
   FnVelocidadeNominal := AnVelocNominal;
@@ -47,6 +58,10 @@ begin
   FnRelacaoTransmissao := AnRelacaoTransmissao;
   FnRendimentoTransmissao := AnRendimentoTransmissao;
   FnMomentoInerciaTransmissao := AnMomentoInerciaTransmissao;
+  FoTableDoisPolos := AoTableDoisPolos;
+  FoTableQuatroPolos := AoTableQuatroPolos;
+  FoTableSeisPolos := AoTableSeisPolos;
+  FoTableOitoPolos := AoTableOitoPolos;
 end;
 
 function TEMParametrosCalcular.GetConjugadoNominal: Extended;
@@ -79,6 +94,26 @@ begin
   Result := FnRendimentoTransmissao;
 end;
 
+function TEMParametrosCalcular.GetTableDoisPolos: TFDMemTable;
+begin
+  Result := FoTableDoisPolos;
+end;
+
+function TEMParametrosCalcular.GetTableOitoPolos: TFDMemTable;
+begin
+  Result := FoTableOitoPolos;
+end;
+
+function TEMParametrosCalcular.GetTableQuatroPolos: TFDMemTable;
+begin
+  Result := FoTableQuatroPolos;
+end;
+
+function TEMParametrosCalcular.GetTableSeisPolos: TFDMemTable;
+begin
+  Result := FoTableSeisPolos;
+end;
+
 function TEMParametrosCalcular.GetVelocidadeNominal: Extended;
 begin
   Result := FnVelocidadeNominal;
@@ -86,7 +121,8 @@ end;
 
 class function TEMParametrosCalcular.New(AnVelocNominal, AnConjugadoNominal, AnConjugadoPartida,
   AnMomentoInercia, AnRelacaoTransmissao, AnRendimentoTransmissao,
-  AnMomentoInerciaTransmissao: Extended): IEMParametrosCalcular;
+  AnMomentoInerciaTransmissao: Extended; AoTableDoisPolos, AoTableQuatroPolos,
+  AoTableSeisPolos, AoTableOitoPolos: TFDMemTable): IEMParametrosCalcular;
 begin
   Result := TEMParametrosCalcular.Create(AnVelocNominal,
                                          AnConjugadoNominal,
@@ -94,7 +130,11 @@ begin
                                          AnMomentoInercia,
                                          AnRelacaoTransmissao,
                                          AnRendimentoTransmissao,
-                                         AnMomentoInerciaTransmissao);
+                                         AnMomentoInerciaTransmissao,
+                                         AoTableDoisPolos,
+                                         AoTableQuatroPolos,
+                                         AoTableSeisPolos,
+                                         AoTableOitoPolos);
 end;
 
 end.
