@@ -2,8 +2,9 @@ object frmPlanilhas: TfrmPlanilhas
   Left = 0
   Top = 0
   Border.Styling = False
-  BorderIcons = []
-  BorderStyle = None
+  BorderIcons = [biSystemMenu]
+  BorderStyle = Single
+  Caption = 'Planilhas'
   ClientHeight = 581
   ClientWidth = 862
   Position = DesktopCenter
@@ -19,7 +20,7 @@ object frmPlanilhas: TfrmPlanilhas
     Padding.Right = 30.000000000000000000
     Padding.Bottom = 30.000000000000000000
     Size.Width = 862.000000000000000000
-    Size.Height = 531.000000000000000000
+    Size.Height = 581.000000000000000000
     Size.PlatformDefault = False
     object swFundo: TShadowEffect
       Distance = 3.000000000000000000
@@ -31,20 +32,20 @@ object frmPlanilhas: TfrmPlanilhas
     object tcPlanilhas: TTabControl
       Align = Client
       Size.Width = 802.000000000000000000
-      Size.Height = 471.000000000000000000
+      Size.Height = 521.000000000000000000
       Size.PlatformDefault = False
       TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       Sizes = (
         802s
-        445s
+        495s
         802s
-        445s
+        495s
         802s
-        445s
+        495s
         802s
-        445s)
+        495s)
       object tiDoisPolos: TTabItem
         CustomIcon = <
           item
@@ -63,12 +64,12 @@ object frmPlanilhas: TfrmPlanilhas
           CanFocus = True
           ClipChildren = True
           Size.Width = 802.000000000000000000
-          Size.Height = 445.000000000000000000
+          Size.Height = 495.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
           Viewport.Width = 798.000000000000000000
-          Viewport.Height = 420.000000000000000000
+          Viewport.Height = 470.000000000000000000
         end
       end
       object tiQuatroPolos: TTabItem
@@ -89,12 +90,12 @@ object frmPlanilhas: TfrmPlanilhas
           CanFocus = True
           ClipChildren = True
           Size.Width = 802.000000000000000000
-          Size.Height = 445.000000000000000000
+          Size.Height = 495.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
           Viewport.Width = 798.000000000000000000
-          Viewport.Height = 420.000000000000000000
+          Viewport.Height = 470.000000000000000000
         end
       end
       object tiSeisPolos: TTabItem
@@ -115,12 +116,12 @@ object frmPlanilhas: TfrmPlanilhas
           CanFocus = True
           ClipChildren = True
           Size.Width = 802.000000000000000000
-          Size.Height = 445.000000000000000000
+          Size.Height = 495.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
           Viewport.Width = 798.000000000000000000
-          Viewport.Height = 420.000000000000000000
+          Viewport.Height = 470.000000000000000000
         end
       end
       object tiOitoPolos: TTabItem
@@ -141,12 +142,12 @@ object frmPlanilhas: TfrmPlanilhas
           CanFocus = True
           ClipChildren = True
           Size.Width = 802.000000000000000000
-          Size.Height = 445.000000000000000000
+          Size.Height = 495.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
           Viewport.Width = 798.000000000000000000
-          Viewport.Height = 420.000000000000000000
+          Viewport.Height = 470.000000000000000000
         end
       end
     end
@@ -158,6 +159,7 @@ object frmPlanilhas: TfrmPlanilhas
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
+    Visible = False
     object swEff: TShadowEffect
       Distance = 3.000000000000000000
       Direction = 45.000000000000000000

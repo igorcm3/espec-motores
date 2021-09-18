@@ -57,7 +57,7 @@ begin
   except
   end;
 
-  Self.ShowModal;
+  Self.Show;
 end;
 
 procedure TfrmPlanilhas.btnFecharClick(Sender: TObject);

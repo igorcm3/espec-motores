@@ -198,11 +198,7 @@ var
   formPlanilhas: TfrmPlanilhas;
 begin
   formPlanilhas := TfrmPlanilhas.Create(nil);
-  try
-    formPlanilhas.AbrirForm(bmTableDoisPolos, bmTableQuatroPolos, bmTableSeisPolos, bmTableOitoPolos);
-  finally
-    FreeAndNil(formPlanilhas)
-  end;
+  formPlanilhas.AbrirForm(bmTableDoisPolos, bmTableQuatroPolos, bmTableSeisPolos, bmTableOitoPolos);
 end;
 
 procedure TfrmPrincipal.numberClick(Sender: TObject);
@@ -306,7 +302,7 @@ end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
 const
-  caminhoArquivo = 'D:\GitHub\espec-motores\Arquivos\CSV\';
+  caminhoArquivo = 'C:\Users\Igor Corona\Desktop\temp\espec-motores\Arquivos\CSV\';
 begin
   try
     bmReaderDoisPolos.FileName := caminhoArquivo + 'DoisPolos.csv';

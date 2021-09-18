@@ -46,7 +46,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 301.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 38
+        TabOrder = 37
         object lvlMomentoInerciaTransmissao: TLabel
           Align = Left
           StyledSettings = [Size, Style, FontColor]
@@ -412,7 +412,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 43
+        TabOrder = 42
         object lvlTempoAceleracaoLimiteSaida: TLabel
           Align = Client
           StyledSettings = [Size, Style, FontColor]
@@ -461,7 +461,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 41
+        TabOrder = 40
         object lvlTempoRotorBloqueadoSaida: TLabel
           Align = Client
           StyledSettings = [Size, Style, FontColor]
@@ -510,7 +510,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 40
+        TabOrder = 39
         object lvlTempoAceleracaoSaida: TLabel
           Align = Client
           StyledSettings = [Size, Style, FontColor]
@@ -559,7 +559,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 39
+        TabOrder = 38
         object lvlConjugadoNominalSaida: TLabel
           Align = Client
           StyledSettings = [Size, Style, FontColor]
@@ -608,7 +608,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 42
+        TabOrder = 41
         object lvlVelocidadeNominalSaida: TLabel
           Align = Client
           StyledSettings = [Size, Style, FontColor]
@@ -656,7 +656,7 @@ object frmPrincipal: TfrmPrincipal
         Size.Width = 451.000000000000000000
         Size.Height = 24.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 38
+        TabOrder = 37
         object lvlPotenciaNominalSaida: TLabel
           Align = Client
           StyledSettings = [Size, Style, FontColor]
@@ -899,6 +899,8 @@ object frmPrincipal: TfrmPrincipal
     Top = 328
   end
   object bmQuatroPolos: TFDBatchMove
+    Reader = bmReaderQuatroPolos
+    Writer = bmWriterQuatroPolos
     Mappings = <>
     LogFileName = 'Data.log'
     Left = 32
