@@ -141,6 +141,15 @@
         <DCCReference Include="uEMValoresCalculados.pas"/>
         <DCCReference Include="uEMParametrosCalcular.pas"/>
         <DCCReference Include="uMemTableHelper.pas"/>
+        <DCCReference Include="OpenViewURL.pas"/>
+        <DCCReference Include="Planilhas.pas">
+            <Form>frmPlanilhas</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Sobre.pas">
+            <Form>frmSobre</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

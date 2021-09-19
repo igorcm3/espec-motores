@@ -114,6 +114,7 @@ type
     procedure numberClick(Sender: TObject);
     procedure btnPlanilhasClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnSobreClick(Sender: TObject);
   private
     function GetParametrosCalcular: IEMParametrosCalcular;
     function ValidarParametros: Boolean;
@@ -132,7 +133,7 @@ implementation
 
 uses
   uEMValoresCalculados, uIEMValoresCalculados, uEMCalcular, uEMParametrosCalcular,
-  Planilhas;
+  Planilhas, Sobre;
 
 {$R *.fmx}
 
@@ -199,6 +200,18 @@ var
 begin
   formPlanilhas := TfrmPlanilhas.Create(nil);
   formPlanilhas.AbrirForm(bmTableDoisPolos, bmTableQuatroPolos, bmTableSeisPolos, bmTableOitoPolos);
+end;
+
+procedure TfrmPrincipal.btnSobreClick(Sender: TObject);
+var
+  formSobre: TfrmSobre;
+begin
+  formSobre := TfrmSobre.Create(nil);
+  try
+    formSobre.ShowModal;
+  finally
+    freeAndNil(formSobre);
+  end;
 end;
 
 procedure TfrmPrincipal.numberClick(Sender: TObject);
@@ -301,9 +314,11 @@ begin
 end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
-const
-  caminhoArquivo = 'C:\Users\Igor Corona\Desktop\temp\espec-motores\Arquivos\CSV\';
+var
+  caminhoArquivo: String;
 begin
+  caminhoArquivo := StringReplace(ExtractFilePath(GetCurrentDir), 'Win32\', 'Arquivos\CSV\', []);
+
   try
     bmReaderDoisPolos.FileName := caminhoArquivo + 'DoisPolos.csv';
     bmDoisPolos.GuessFormat;
