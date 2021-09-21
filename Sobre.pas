@@ -38,6 +38,17 @@ type
     imgFbWillian: TImage;
     imgLinkedinWillian: TImage;
     imgInstaWillian: TImage;
+    retMarconi2: TRectangle;
+    imgMarconi: TImage;
+    retMarconi1: TRectangle;
+    lblMarconi: TLabel;
+    imgInstagramMarconi: TImage;
+    imgFbMarconi: TImage;
+    imgLinkedinMarconi: TImage;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
     procedure btnFecharClick(Sender: TObject);
     procedure imgInstaIgorClick(Sender: TObject);
     procedure imgInstaRodrigoClick(Sender: TObject);
@@ -48,6 +59,9 @@ type
     procedure imgLinkedinWillianClick(Sender: TObject);
     procedure imgLinkedinIgorClick(Sender: TObject);
     procedure imgLinkedinRodrigoClick(Sender: TObject);
+    procedure imgInstagramMarconiClick(Sender: TObject);
+    procedure imgFbMarconiClick(Sender: TObject);
+    procedure imgLinkedinMarconiClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,6 +103,21 @@ end;
 procedure TfrmSobre.imgInstaRodrigoClick(Sender: TObject);
 begin
   OpenURL('https://www.instagram.com/rodrigo.flamia/');
+end;
+
+procedure TfrmSobre.imgInstagramMarconiClick(Sender: TObject);
+begin
+  OpenURL('https://www.instagram.com/marconijanuario/');
+end;
+
+procedure TfrmSobre.imgFbMarconiClick(Sender: TObject);
+begin
+  MessageDlg('Sem Facebook!', TMsgDlgType.mtwarning, [TMsgDlgBtn.mbok], 0);
+end;
+
+procedure TfrmSobre.imgLinkedinMarconiClick(Sender: TObject);
+begin
+  OpenURL('https://www.linkedin.com/in/marconijan');
 end;
 
 procedure TfrmSobre.imgFbIgorClick(Sender: TObject);
