@@ -45,10 +45,10 @@ type
     imgInstagramMarconi: TImage;
     imgFbMarconi: TImage;
     imgLinkedinMarconi: TImage;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
+    lblAcadIgor: TLabel;
+    lblAcadRodrigo: TLabel;
+    lblAcadWillian: TLabel;
+    lblProfMarconi: TLabel;
     procedure btnFecharClick(Sender: TObject);
     procedure imgInstaIgorClick(Sender: TObject);
     procedure imgInstaRodrigoClick(Sender: TObject);
