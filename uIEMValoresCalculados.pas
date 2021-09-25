@@ -11,6 +11,12 @@ type
     function GetTempoAceleracao: Extended;
     function GetTempoRotorBloqueado: Extended;
     function GetTempoAceleracaoLimite: Extended;
+    procedure SetPotenciaNominal(AoValue: Extended);
+    procedure SetVelocidadeNominal(AoValue: Extended);
+    procedure SetConjugadoNominal(AoValue: Extended);
+    procedure SetTempoAceleracao(AoValue: Extended);
+    procedure SetTempoRotorBloqueado(AoValue: Extended);
+    procedure SetTempoAceleracaoLimite(AoValue: Extended);
   end;
 
 implementation

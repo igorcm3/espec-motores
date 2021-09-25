@@ -20,27 +20,24 @@ type
     function GetTempoAceleracao: Extended;
     function GetTempoRotorBloqueado: Extended;
     function GetTempoAceleracaoLimite: Extended;
+    procedure SetPotenciaNominal(AoValue: Extended);
+    procedure SetVelocidadeNominal(AoValue: Extended);
+    procedure SetConjugadoNominal(AoValue: Extended);
+    procedure SetTempoAceleracao(AoValue: Extended);
+    procedure SetTempoRotorBloqueado(AoValue: Extended);
+    procedure SetTempoAceleracaoLimite(AoValue: Extended);
   public
-    class function New(AnPotenciaNominal, AnVelocNominal, AnConjugadoNominal, AnTempoAceleracao,
-      AnTempoRotorBloqueado, AnTempoAceleracaoLimite: Extended): IEMValoresCalculados;
-    constructor Create(AnPotenciaNominal, AnVelocNominal, AnConjugadoNominal,
-      AnTempoAceleracao, AnTempoRotorBloqueado, AnTempoAceleracaoLimite: Extended);
+    class function New(): IEMValoresCalculados;
+    constructor Create();
   end;
 
 implementation
 
 { TEMValoresCalculados }
 
-constructor TEMValoresCalculados.Create(AnPotenciaNominal, AnVelocNominal, AnConjugadoNominal,
-  AnTempoAceleracao, AnTempoRotorBloqueado, AnTempoAceleracaoLimite: Extended);
+constructor TEMValoresCalculados.Create();
 begin
   inherited Create();
-  FnPotenciaNominal := AnPotenciaNominal;
-  FnVelocidadeNominal := AnVelocNominal;
-  FnConjugadoNominal := AnConjugadoNominal;
-  FnTempoAceleracao := AnTempoAceleracao;
-  FnTempoRotorBloqueado := AnTempoRotorBloqueado;
-  FnTempoAceleracaoLimite := AnTempoAceleracaoLimite;
 end;
 
 function TEMValoresCalculados.GetConjugadoNominal: Extended;
@@ -73,15 +70,39 @@ begin
   Result := FnVelocidadeNominal;
 end;
 
-class function TEMValoresCalculados.New(AnPotenciaNominal, AnVelocNominal, AnConjugadoNominal,
-  AnTempoAceleracao, AnTempoRotorBloqueado, AnTempoAceleracaoLimite: Extended): IEMValoresCalculados;
+class function TEMValoresCalculados.New(): IEMValoresCalculados;
 begin
-  Result := TEMValoresCalculados.Create(AnPotenciaNominal,
-                                        AnVelocNominal,
-                                        AnConjugadoNominal,
-                                        AnTempoAceleracao,
-                                        AnTempoRotorBloqueado,
-                                        AnTempoAceleracaoLimite);
+  Result := TEMValoresCalculados.Create();
+end;
+
+procedure TEMValoresCalculados.SetConjugadoNominal(AoValue: Extended);
+begin
+  FnConjugadoNominal := AoValue;
+end;
+
+procedure TEMValoresCalculados.SetPotenciaNominal(AoValue: Extended);
+begin
+  FnPotenciaNominal := AoValue;
+end;
+
+procedure TEMValoresCalculados.SetTempoAceleracao(AoValue: Extended);
+begin
+  FnTempoAceleracao := AoValue;
+end;
+
+procedure TEMValoresCalculados.SetTempoAceleracaoLimite(AoValue: Extended);
+begin
+  FnTempoAceleracaoLimite := AoValue;
+end;
+
+procedure TEMValoresCalculados.SetTempoRotorBloqueado(AoValue: Extended);
+begin
+  FnTempoRotorBloqueado := AoValue;
+end;
+
+procedure TEMValoresCalculados.SetVelocidadeNominal(AoValue: Extended);
+begin
+  FnVelocidadeNominal := AoValue;
 end;
 
 end.

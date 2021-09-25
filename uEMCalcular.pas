@@ -1,21 +1,26 @@
-unit uEMCalcular;
+Ôªøunit uEMCalcular;
 
 interface
 
 uses
-  uIEMValoresCalculados, uIEMCalcular, uIEMParametrosCalcular;
+  uIEMValoresCalculados, uIEMCalcular, uIEMParametrosCalcular, FireDAC.Comp.Client;
 
 type
   TEMCalcular = class(TInterfacedObject, IEMCalcular)
   private
+    FoParamsCalculados: IEMValoresCalculados;
     FoParamsCalcular: IEMParametrosCalcular;
+    Pc, Wc: Extended;
     function Calcular: IEMValoresCalculados;
-    function GetConjugadoNominal: Extended;
-    function GetPotenciaNominal: Extended;
-    function GetTempoAceleracao: Extended;
-    function GetTempoAceleracaoLimite: Extended;
-    function GetTempoRotorBloqueado: Extended;
-    function GetVelocNominal: Extended;
+    procedure SetConjugadoNominal;
+    procedure SetPotenciaNominal;
+    procedure SetTempoAceleracao;
+    procedure SetTempoAceleracaoLimite;
+    procedure SetTempoRotorBloqueado;
+    procedure SetVelocNominal;
+    function GetCalcularPolos: Integer;
+    procedure SetDadosTabelados;
+    function GetTable: TFDMemTable;
   public
     class function New(AoParamsCalcular: IEMParametrosCalcular): IEMCalcular;
     constructor Create(AoParamsCalcular: IEMParametrosCalcular);
@@ -37,23 +42,23 @@ begin
     mostrar num polos na saida
   }
 
-  {----------- 1 - Velocidade do motor e n˙mero de polos ----------------------}
-  {  RotaÁ„o nominal da carga [Nm]  }
+  {----------- 1 - Velocidade do motor e n√∫mero de polos ----------------------}
+  {  Rota√ß√£o nominal da carga [Nm]  }
   // Cnc - Conjudado nominal da carga =
 
   // Fe = 60 Hz
   // Npolos = criar algoritmo com a equacao nSinc = 120 * Fe / P
-  // onde P È o numero de polos
-  // nSinc usar a vel sincrona do motor Nm = z * Nc (onde Nc È um dado de entrada)
+  // onde P √© o numero de polos
+  // nSinc usar a vel sincrona do motor Nm = z * Nc (onde Nc √© um dado de entrada)
   // Professor usou ===> polos = (120*Fe)/Nm
   // arredondar o polo para baixo, deixar int
 
 
-  {----------- 2 - DeterminaÁ„o de Potencia nominal da carga ------------------}
+  {----------- 2 - Determina√ß√£o de Potencia nominal da carga ------------------}
   // Pc = wc * Ccn
   // wc= nc*2*pi/60 wc em rad/s
 
-  {----------- 3 - DeterminaÁ„o de Potencia nominal do motor ------------------}
+  {----------- 3 - Determina√ß√£o de Potencia nominal do motor ------------------}
   // Pn = Pc / Bac%/100        Bac% = rendimento do motor
 
 
@@ -62,59 +67,186 @@ begin
   // ai pega os valores tabulados de Cp/Cn e Cmax/Cn e de inercia Jn em km^2
 
 
-   {----------- 4 - DeterminaÁ„o do conjugado mÈdio do motor ------------------}
+   {----------- 4 - Determina√ß√£o do conjugado m√©dio do motor ------------------}
    // Cmmed = 0,45 * (Cp/Cn + CMax/Cn) * Cn * 9,81        [Nm]
    // CRMed = Cmmed* R ou CRmed = Cmmed/z                 [Nm]
 
 
-  {----------- 5 - N„o copiei ------------------}
-  {----------- 6 - Refletir momentos de inÈrcia para o eixo do motor ----------}
-  {----------- 7 - Calcular momentos de inÈrcia totais  -----------------------}
-  {----------- 8 - Calcular tempo de aceleraÁ„o  ------------------------------}
+  {----------- 5 - N√£o copiei ------------------}
+  {----------- 6 - Refletir momentos de in√©rcia para o eixo do motor ----------}
+  {----------- 7 - Calcular momentos de in√©rcia totais  -----------------------}
+  {----------- 8 - Calcular tempo de acelera√ß√£o  ------------------------------}
 
+  SetPotenciaNominal;
+  SetVelocNominal;
+  SetDadosTabelados; //Percorrer a tabela
+  SetConjugadoNominal;
+  SetTempoAceleracao;
+  SetTempoRotorBloqueado;
+  SetTempoAceleracaoLimite;
 
-  Result := TEMValoresCalculados.New(GetPotenciaNominal,
-                                     GetVelocNominal,
-                                     GetConjugadoNominal,
-                                     GetTempoAceleracao,
-                                     GetTempoRotorBloqueado,
-                                     GetTempoAceleracaoLimite);
+  Result := FoParamsCalculados;
 end;
 
-function TEMCalcular.GetPotenciaNominal: Extended;
+function TEMCalcular.GetCalcularPolos: Integer;
+var
+  nSincCalc, nSinc2, nSinc4, nSinc6, nSinc8: Extended;
+  p: Integer;
 begin
+  nSinc2 := 3600; //(120*60)/2
+  nSinc4 := 1800; //(120*60)/4
+  nSinc6 := 1200; //(120*60)/6
+  nSinc8 := 900; //(120*60)/8
 
+  nSincCalc := FoParamsCalculados.GetVelocidadeNominal;
+
+  if (nSincCalc <= nSinc8) then
+    p := 8
+  else if ((nSincCalc > nSinc8) and (nSincCalc <= nSinc6)) then
+    p := 6
+  else if ((nSincCalc > nSinc6) and (nSincCalc <= nSinc4)) then
+    p := 4
+  else if ((nSincCalc > nSinc4) and (nSincCalc <= nSinc2)) then
+    p := 2
+  else
+    p := 0; ///////Tratar mensagem de exce√ß√£o
+
+  Result := p;
 end;
 
-function TEMCalcular.GetVelocNominal: Extended;
+procedure TEMCalcular.SetPotenciaNominal;
+var
+  pn: Extended;
 begin
+  // wc= nc*2*pi/60 wc em rad/s
+  wc := ((FoParamsCalcular.GetVelocidadeNominal / 60) * 2 * System.Pi);
 
+  // Pc = wc * Ccn
+  pc := (wc * FoParamsCalcular.GetConjugadoNominal);
+
+  // Pn = Pc / Œ∑ac/100        Œ∑ac = rendimento do motor
+  // Dividido por mil para deixar kw
+  pn := (pc / (FoParamsCalcular.GetRendimentoTransmissao / 100)) / 1000;
+
+  FoParamsCalculados.SetPotenciaNominal(pn);
 end;
 
-function TEMCalcular.GetConjugadoNominal: Extended;
+procedure TEMCalcular.SetVelocNominal;
+var
+  nm: Extended;
 begin
+  // Nm = z * Nc
+  nm := (FoParamsCalcular.GetRelacaoTransmissao * FoParamsCalcular.GetVelocidadeNominal);
 
+  FoParamsCalculados.SetVelocidadeNominal(nm);
 end;
 
-function TEMCalcular.GetTempoAceleracao: Extended;
+procedure TEMCalcular.SetConjugadoNominal;
 begin
+  // Cn (dado tabelado) = Pn/Wn
+  // Cn (dado tabelado) = Pn/2 * pi * nn
 
+  FoParamsCalculados.SetConjugadoNominal(GetTable.FieldByName('CONJUGADONOMINAL').AsFloat);
 end;
 
-function TEMCalcular.GetTempoRotorBloqueado: Extended;
+function TEMCalcular.GetTable: TFDMemTable;
+var
+  nPolos: Integer;
 begin
+  nPolos := GetCalcularPolos;
 
+  if (nPolos = 2) then
+    Result := FoParamsCalcular.GetTableDoisPolos
+  else if (nPolos = 4) then
+    Result := FoParamsCalcular.GetTableQuatroPolos
+  else if (nPolos = 6) then
+    Result := FoParamsCalcular.GetTableSeisPolos
+  else
+    Result := FoParamsCalcular.GetTableOitoPolos;
+
+  //Lan√ßar exce√ß√£o se n encontrar
 end;
 
-function TEMCalcular.GetTempoAceleracaoLimite: Extended;
+procedure TEMCalcular.SetDadosTabelados;
+var
+  oTable: TFDMemTable;
+  nPotenciaCatalogo: Extended;
 begin
+  oTable := GetTable;
+  nPotenciaCatalogo := 0;
 
+  oTable.First;
+  while (not oTable.Eof) do begin
+    if (oTable.FieldByName('POTENCIAWTS').AsFloat >= FoParamsCalculados.GetPotenciaNominal) then begin
+      nPotenciaCatalogo := oTable.FieldByName('POTENCIAWTS').AsFloat;
+      break;
+    end;
+
+    oTable.Next;
+  end;
+
+  oTable.Locate('POTENCIAWTS', nPotenciaCatalogo, []);
+
+  FoParamsCalculados.SetPotenciaNominal(nPotenciaCatalogo);
+
+  //////IF POTENCIACATALOGO = 0 LAN√áAR EXCE√á√ÉO E DAR UM FIRST NO TABLE
+end;
+
+procedure TEMCalcular.SetTempoAceleracao;
+var
+  Cmmed, CRMed, Jce, Jm, Jac, TempoAcel: Extended;
+begin
+  var oTable: TFDMemTable := GetTable;
+
+  // Cmmed = 0,45 * (Cp/Cn + CMax/Cn) * Cn * 9,81 [Nm]
+  Cmmed := (0.45) *
+           (oTable.FieldByName('CONJUGADOROTORBLOQUEADO').AsFloat + oTable.FieldByName('CONJUGADOMAXIMO').AsFloat) *
+           (oTable.FieldByName('CONJUGADONOMINAL').AsFloat) *
+           (9.81);
+
+  // CRMed = Cmmed* R ou CRmed = Cmmed/z [Nm]
+  CRMed := (Cmmed / FoParamsCalcular.GetRelacaoTransmissao);
+
+  Jm := oTable.FieldByName('MOMENTOINERCIA').AsFloat;
+
+  Jce := (FoParamsCalcular.GetMomentoInercia) /
+         (FoParamsCalcular.GetRelacaoTransmissao * FoParamsCalcular.GetRelacaoTransmissao);
+
+  Jac := FoParamsCalcular.GetMomentoInerciaTransmissao;
+
+  //Verificar se precisar calcular o JAC (ACOPLAMENTO)
+  //Verificar se transmiss√£o = acoplamento
+
+  // TA = 2 * PI * n/60 * ((Jm + Jce) / (Cmmmed - CRMed))
+  TempoAcel := (2 * System.Pi) *
+               (FoParamsCalculados.GetVelocidadeNominal / 60) *
+               ((Jm + Jce + Jac) / (Cmmed - CRMed));
+
+  FoParamsCalculados.SetTempoAceleracao(TempoAcel);
+end;
+
+procedure TEMCalcular.SetTempoRotorBloqueado;
+begin
+  FoParamsCalculados.SetTempoRotorBloqueado(GetTable.FieldByName('TEMPOMAXIMOROTORBLOQQUENTE').AsFloat);
+
+  // IF TEMPO ACELERACAO < 0.8 * TEMPO ROTOR BLOQUEADO)
+  // MOTOR ACIONA A CARGA
+  // ELSE
+  // PROBLEMAS DE PROTE√á√ÉO
+end;
+
+procedure TEMCalcular.SetTempoAceleracaoLimite;
+begin
+  FoParamsCalculados.SetTempoAceleracaoLimite(FoParamsCalculados.GetTempoRotorBloqueado * 0.8);
 end;
 
 constructor TEMCalcular.Create(AoParamsCalcular: IEMParametrosCalcular);
 begin
   inherited Create();
   FoParamsCalcular := AoParamsCalcular;
+  FoParamsCalculados := TEMValoresCalculados.New();
+  Pc := 0;
+  Wc := 0;
 end;
 
 class function TEMCalcular.New(AoParamsCalcular: IEMParametrosCalcular): IEMCalcular;

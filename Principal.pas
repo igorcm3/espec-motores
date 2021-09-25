@@ -11,7 +11,8 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Comp.BatchMove.DataSet, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Comp.BatchMove,
-  FireDAC.Comp.BatchMove.Text, FireDAC.FMXUI.Wait;
+  FireDAC.Comp.BatchMove.Text, FireDAC.FMXUI.Wait, FMX.Memo.Types,
+  FMX.ScrollBox, FMX.Memo;
 
 type
   TfrmPrincipal = class(TForm)
@@ -101,6 +102,11 @@ type
     bmReaderOitoPolos: TFDBatchMoveTextReader;
     bmTableOitoPolos: TFDMemTable;
     bmWriterOitoPolos: TFDBatchMoveDataSetWriter;
+    lyAviso: TLayout;
+    lblAviso: TLabel;
+    imgAlerta: TImage;
+    imgSucesso: TImage;
+    lblInfExtra: TLabel;
     procedure btnChamaMenuClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
@@ -156,6 +162,8 @@ procedure TfrmPrincipal.btnCalcularClick(Sender: TObject);
 var
   AoValoresCalculados: IEMValoresCalculados;
 begin
+  edtVelocidadeNominal.SetFocus;
+
   if (not ValidarParametros) then
     Exit;
 
@@ -375,7 +383,5 @@ begin
 end;
 
 // ------------- FIM Funcões para movimentar a tela ------------------------//
-
-
 
 end.
