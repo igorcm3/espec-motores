@@ -10,7 +10,6 @@ type
   private
     FoParamsCalculados: IEMValoresCalculados;
     FoParamsCalcular: IEMParametrosCalcular;
-    Pc, Wc: Extended;
     function Calcular: IEMValoresCalculados;
     procedure SetConjugadoNominal;
     procedure SetPotenciaNominal;
@@ -18,7 +17,7 @@ type
     procedure SetTempoAceleracaoLimite;
     procedure SetTempoRotorBloqueado;
     procedure SetVelocNominal;
-    function GetCalcularPolos: Integer;
+    procedure SetNumeroPolos;
     procedure SetDadosTabelados;
     function GetTable: TFDMemTable;
   public
@@ -35,50 +34,10 @@ uses
 
 function TEMCalcular.Calcular: IEMValoresCalculados;
 begin
-
-
-  { OBS DA AULA
-    vel estiamda do motor
-    mostrar num polos na saida
-  }
-
-  {----------- 1 - Velocidade do motor e número de polos ----------------------}
-  {  Rotação nominal da carga [Nm]  }
-  // Cnc - Conjudado nominal da carga =
-
-  // Fe = 60 Hz
-  // Npolos = criar algoritmo com a equacao nSinc = 120 * Fe / P
-  // onde P é o numero de polos
-  // nSinc usar a vel sincrona do motor Nm = z * Nc (onde Nc é um dado de entrada)
-  // Professor usou ===> polos = (120*Fe)/Nm
-  // arredondar o polo para baixo, deixar int
-
-
-  {----------- 2 - Determinação de Potencia nominal da carga ------------------}
-  // Pc = wc * Ccn
-  // wc= nc*2*pi/60 wc em rad/s
-
-  {----------- 3 - Determinação de Potencia nominal do motor ------------------}
-  // Pn = Pc / Bac%/100        Bac% = rendimento do motor
-
-
-  // Pn vai dar um valor em watts, divide por mil pra ficar kW
-  // Acha o valor mais proximo na tabela (acahr num polos, pra saber qual tabela),
-  // ai pega os valores tabulados de Cp/Cn e Cmax/Cn e de inercia Jn em km^2
-
-
-   {----------- 4 - Determinação do conjugado médio do motor ------------------}
-   // Cmmed = 0,45 * (Cp/Cn + CMax/Cn) * Cn * 9,81        [Nm]
-   // CRMed = Cmmed* R ou CRmed = Cmmed/z                 [Nm]
-
-
-  {----------- 5 - Não copiei ------------------}
-  {----------- 6 - Refletir momentos de inércia para o eixo do motor ----------}
-  {----------- 7 - Calcular momentos de inércia totais  -----------------------}
-  {----------- 8 - Calcular tempo de aceleração  ------------------------------}
   SetPotenciaNominal;
   SetVelocNominal;
-  SetDadosTabelados; //Percorrer a tabela
+  SetNumeroPolos;
+  SetDadosTabelados;
   SetConjugadoNominal;
   SetTempoAceleracao;
   SetTempoRotorBloqueado;
@@ -87,7 +46,7 @@ begin
   Result := FoParamsCalculados;
 end;
 
-function TEMCalcular.GetCalcularPolos: Integer;
+procedure TEMCalcular.SetNumeroPolos;
 var
   nSincCalc, nSinc2, nSinc4, nSinc6, nSinc8: Extended;
   p: Integer;
@@ -110,12 +69,12 @@ begin
   else
     raise Exception.Create('Polo não encontrado!');
 
-  Result := p;
+  FoParamsCalculados.SetNumeroPolos(p);
 end;
 
 procedure TEMCalcular.SetPotenciaNominal;
 var
-  pn: Extended;
+  pn, wc, pc: Extended;
 begin
   // wc= nc*2*pi/60 wc em rad/s
   wc := ((FoParamsCalcular.GetVelocidadeNominal / 60) * 2 * System.Pi);
@@ -127,6 +86,8 @@ begin
   // Dividido por mil para deixar kw
   pn := (pc / (FoParamsCalcular.GetRendimentoTransmissao / 100)) / 1000;
 
+  FoParamsCalculados.SetPotenciaNominalCargaRadianos(wc);
+  FoParamsCalculados.SetPotenciaNominalCarga(pc);
   FoParamsCalculados.SetPotenciaNominal(pn);
 end;
 
@@ -152,7 +113,7 @@ function TEMCalcular.GetTable: TFDMemTable;
 var
   nPolos: Integer;
 begin
-  nPolos := GetCalcularPolos;
+  nPolos := FoParamsCalculados.GetNumeroPolos;
 
   if (nPolos = 2) then
     Result := FoParamsCalcular.GetTableDoisPolos
@@ -197,8 +158,9 @@ end;
 procedure TEMCalcular.SetTempoAceleracao;
 var
   Cmmed, CRMed, Jce, Jm, Jac, TempoAcel: Extended;
+  oTable: TFDMemTable;
 begin
-  var oTable: TFDMemTable := GetTable;
+  oTable := GetTable;
 
   // Cmmed = 0,45 * (Cp/Cn + CMax/Cn) * Cn * 9,81 [Nm]
   Cmmed := (0.45) *
@@ -224,6 +186,11 @@ begin
                (FoParamsCalculados.GetVelocidadeNominal / 60) *
                ((Jm + Jce + Jac) / (Cmmed - CRMed));
 
+  FoParamsCalculados.SetConjugadoMotorMedio(Cmmed);
+  FoParamsCalculados.SetConjugadoResistenteMedio(CRMed);
+  FoParamsCalculados.SetMomentoInerciaMotor(Jm);
+  FoParamsCalculados.SetMomentoInerciaReferidoMotor(Jce);
+  FoParamsCalculados.SetInerciaAcoplamento(Jac);
   FoParamsCalculados.SetTempoAceleracao(TempoAcel);
 end;
 
@@ -242,15 +209,12 @@ begin
   inherited Create();
   FoParamsCalcular := AoParamsCalcular;
   FoParamsCalculados := TEMValoresCalculados.New();
-  Pc := 0;
-  Wc := 0;
 end;
 
 class function TEMCalcular.New(AoParamsCalcular: IEMParametrosCalcular): IEMCalcular;
 begin
   Result := TEMCalcular.Create(AoParamsCalcular);
 end;
-
 
 end.
 

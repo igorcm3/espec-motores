@@ -216,14 +216,14 @@ procedure TfrmPrincipal.CarregarInformacoesExtras(AoValoresCalculados: IEMValore
 begin
   lyInformacoesExtras.Visible := True;
 
-  AddInfLabel('Número de Polos:', AoValoresCalculados.GetTempoAceleracao);
-  AddInfLabel('Potência Nominal Carga (Pc):', AoValoresCalculados.GetTempoAceleracao);
-  AddInfLabel('Potência Nominal Carga rad/s (Wc):', AoValoresCalculados.GetTempoAceleracao);
-  AddInfLabel('Conjugado Resistente Médio (Crmed):', AoValoresCalculados.GetTempoAceleracao);
-  AddInfLabel('Conjugado Motor Médio (Cmmed):', AoValoresCalculados.GetTempoAceleracao);
-  AddInfLabel('Momento Inércia Motor (Jm):', AoValoresCalculados.GetTempoAceleracao);
-  AddInfLabel('Inércia Acoplamento (Jac):', AoValoresCalculados.GetTempoAceleracao);
-  AddInfLabel('Momento Inércia Carga Referido ao Motor (Jce):', AoValoresCalculados.GetTempoAceleracao);
+  AddInfLabel('Número de Polos:', AoValoresCalculados.GetNumeroPolos);
+  AddInfLabel('Potência Nominal Carga (Pc):', AoValoresCalculados.GetPotenciaNominalCarga);
+  AddInfLabel('Potência Nominal Carga rad/s (Wc):', AoValoresCalculados.GetPotenciaNominalCargaRadianos);
+  AddInfLabel('Conjugado Resistente Médio (Crmed):', AoValoresCalculados.GetConjugadoResistenteMedio);
+  AddInfLabel('Conjugado Motor Médio (Cmmed):', AoValoresCalculados.GetConjugadoMotorMedio);
+  AddInfLabel('Momento Inércia Motor (Jm):', AoValoresCalculados.GetMomentoInerciaMotor);
+  AddInfLabel('Inércia Acoplamento (Jac):', AoValoresCalculados.GetInerciaAcoplamento);
+  AddInfLabel('Momento Inércia Carga Referido ao Motor (Jce):', AoValoresCalculados.GetMomentoInerciaReferidoMotor);
 end;
 
 procedure TfrmPrincipal.AddInfLabel(AcTitle: String; AnValue: Extended);
