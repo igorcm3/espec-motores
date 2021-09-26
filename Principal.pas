@@ -12,7 +12,7 @@ uses
   FireDAC.DApt.Intf, FireDAC.Comp.BatchMove.DataSet, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Comp.BatchMove,
   FireDAC.Comp.BatchMove.Text, FireDAC.FMXUI.Wait, FMX.Memo.Types,
-  FMX.ScrollBox, FMX.Memo;
+  FMX.ScrollBox, FMX.Memo, uIEMValoresCalculados;
 
 type
   TfrmPrincipal = class(TForm)
@@ -106,7 +106,10 @@ type
     lblAviso: TLabel;
     imgAlerta: TImage;
     imgSucesso: TImage;
+    lblTituloInfExtra: TLabel;
     lblInfExtra: TLabel;
+    lblCaptionInfExtra: TLabel;
+    lyInformacoesExtras: TLayout;
     procedure btnChamaMenuClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
@@ -125,6 +128,10 @@ type
     function GetParametrosCalcular: IEMParametrosCalcular;
     function ValidarParametros: Boolean;
     procedure FocaComponente(AoNumberBox: TNumberBox);
+    procedure ValidarMotorAcionaCarga(AoValoresCalculados: IEMValoresCalculados);
+    procedure CarregarInformacoesExtras(
+      AoValoresCalculados: IEMValoresCalculados);
+    procedure AddInfLabel(AcTitle: String; AnValue: Extended);
     { Private declarations }
   public
     isDraging: boolean;
@@ -138,7 +145,7 @@ var
 implementation
 
 uses
-  uEMValoresCalculados, uIEMValoresCalculados, uEMCalcular, uEMParametrosCalcular,
+  uEMValoresCalculados, uEMCalcular, uEMParametrosCalcular,
   Planilhas, Sobre;
 
 {$R *.fmx}
@@ -147,7 +154,12 @@ procedure TfrmPrincipal.btmLimparClick(Sender: TObject);
 var
   i: Integer;
 begin
+  lyAviso.Visible := False;
+  lyInformacoesExtras.Visible := False;
 
+  lblCaptionInfExtra.Text := '';
+  lblInfExtra.Text := '';
+  
   for i := frmPrincipal.ComponentCount -1 downto 0 do begin
     if (frmPrincipal.Components[i] is TNumberBox) then begin
        (frmPrincipal.Components[i] as TNumberBox).ResetFocus;
@@ -160,21 +172,64 @@ end;
 
 procedure TfrmPrincipal.btnCalcularClick(Sender: TObject);
 var
-  AoValoresCalculados: IEMValoresCalculados;
+  oValoresCalculados: IEMValoresCalculados;
 begin
   edtVelocidadeNominal.SetFocus;
 
   if (not ValidarParametros) then
     Exit;
 
-  AoValoresCalculados := TEMCalcular.New(GetParametrosCalcular).Calcular;
+  try
+    oValoresCalculados := TEMCalcular.New(GetParametrosCalcular).Calcular;
 
-  edtPotenciaNominalSaida.Value := AoValoresCalculados.GetPotenciaNominal;
-  edtVelocidadeNominalSaida.Value := AoValoresCalculados.GetVelocidadeNominal;
-  edtConjugadoNominalSaida.Value := AoValoresCalculados.GetConjugadoNominal;
-  edtTempoAceleracaoSaida.Value := AoValoresCalculados.GetTempoAceleracao;
-  edtTempoRotorBloqueadoSaida.Value := AoValoresCalculados.GetTempoRotorBloqueado;
-  edtTempoAceleracaoLimiteSaida.Value := AoValoresCalculados.GetTempoAceleracaoLimite;
+    edtPotenciaNominalSaida.Value := oValoresCalculados.GetPotenciaNominal;
+    edtVelocidadeNominalSaida.Value := oValoresCalculados.GetVelocidadeNominal;
+    edtConjugadoNominalSaida.Value := oValoresCalculados.GetConjugadoNominal;
+    edtTempoAceleracaoSaida.Value := oValoresCalculados.GetTempoAceleracao;
+    edtTempoRotorBloqueadoSaida.Value := oValoresCalculados.GetTempoRotorBloqueado;
+    edtTempoAceleracaoLimiteSaida.Value := oValoresCalculados.GetTempoAceleracaoLimite;
+
+    CarregarInformacoesExtras(oValoresCalculados);
+    ValidarMotorAcionaCarga(oValoresCalculados);
+  except
+    on E: Exception do begin
+      MessageDlg(e.Message, TMsgDlgType.mtError, [TMsgDlgBtn.mbok], 0);
+      btmLimparClick(Self);
+    end;
+  end;
+end;
+
+procedure TfrmPrincipal.ValidarMotorAcionaCarga(AoValoresCalculados: IEMValoresCalculados);
+begin
+  lyAviso.Visible := True;
+  
+  imgAlerta.Visible := (not AoValoresCalculados.GetMotorAcionaCarga);
+  imgSucesso.Visible := (AoValoresCalculados.GetMotorAcionaCarga);
+
+  if (AoValoresCalculados.GetMotorAcionaCarga) then
+    lblAviso.Text := 'Motor Aciona a Carga'
+  else
+    lblAviso.Text := 'Problemas de Proteção';
+end;
+
+procedure TfrmPrincipal.CarregarInformacoesExtras(AoValoresCalculados: IEMValoresCalculados);
+begin
+  lyInformacoesExtras.Visible := True;
+
+  AddInfLabel('Número de Polos:', AoValoresCalculados.GetTempoAceleracao);
+  AddInfLabel('Potência Nominal Carga (Pc):', AoValoresCalculados.GetTempoAceleracao);
+  AddInfLabel('Potência Nominal Carga rad/s (Wc):', AoValoresCalculados.GetTempoAceleracao);
+  AddInfLabel('Conjugado Resistente Médio (Crmed):', AoValoresCalculados.GetTempoAceleracao);
+  AddInfLabel('Conjugado Motor Médio (Cmmed):', AoValoresCalculados.GetTempoAceleracao);
+  AddInfLabel('Momento Inércia Motor (Jm):', AoValoresCalculados.GetTempoAceleracao);
+  AddInfLabel('Inércia Acoplamento (Jac):', AoValoresCalculados.GetTempoAceleracao);
+  AddInfLabel('Momento Inércia Carga Referido ao Motor (Jce):', AoValoresCalculados.GetTempoAceleracao);
+end;
+
+procedure TfrmPrincipal.AddInfLabel(AcTitle: String; AnValue: Extended);
+begin
+  lblCaptionInfExtra.Text := lblCaptionInfExtra.Text + AcTitle + sLineBreak;
+  lblInfExtra.Text := lblInfExtra.Text + FormatFloat('0.####', AnValue) + sLineBreak;
 end;
 
 function TfrmPrincipal.GetParametrosCalcular: IEMParametrosCalcular;
@@ -325,6 +380,9 @@ procedure TfrmPrincipal.FormShow(Sender: TObject);
 var
   caminhoArquivo: String;
 begin
+  lyInformacoesExtras.Visible := False;
+  lyAviso.Visible := False;
+
   caminhoArquivo := StringReplace(ExtractFilePath(GetCurrentDir), 'Win32\', 'Arquivos\CSV\', []);
 
   try

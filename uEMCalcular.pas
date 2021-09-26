@@ -29,7 +29,7 @@ type
 implementation
 
 uses
-  uEMValoresCalculados;
+  uEMValoresCalculados, SysUtils;
 
 { TEMCalcular }
 
@@ -76,7 +76,6 @@ begin
   {----------- 6 - Refletir momentos de inércia para o eixo do motor ----------}
   {----------- 7 - Calcular momentos de inércia totais  -----------------------}
   {----------- 8 - Calcular tempo de aceleração  ------------------------------}
-
   SetPotenciaNominal;
   SetVelocNominal;
   SetDadosTabelados; //Percorrer a tabela
@@ -109,7 +108,7 @@ begin
   else if ((nSincCalc > nSinc4) and (nSincCalc <= nSinc2)) then
     p := 2
   else
-    p := 0; ///////Tratar mensagem de exceção
+    raise Exception.Create('Polo não encontrado!');
 
   Result := p;
 end;
@@ -161,10 +160,10 @@ begin
     Result := FoParamsCalcular.GetTableQuatroPolos
   else if (nPolos = 6) then
     Result := FoParamsCalcular.GetTableSeisPolos
+  else if (nPolos = 8) then
+    Result := FoParamsCalcular.GetTableOitoPolos
   else
-    Result := FoParamsCalcular.GetTableOitoPolos;
-
-  //Lançar exceção se n encontrar
+    raise Exception.Create('Tabela não encontrada!');
 end;
 
 procedure TEMCalcular.SetDadosTabelados;
@@ -185,11 +184,14 @@ begin
     oTable.Next;
   end;
 
+  if (nPotenciaCatalogo = 0) then begin
+    oTable.First;
+    raise Exception.Create('Não foi encontrado um motor na lista especificada!');
+  end;
+
   oTable.Locate('POTENCIAWTS', nPotenciaCatalogo, []);
 
   FoParamsCalculados.SetPotenciaNominal(nPotenciaCatalogo);
-
-  //////IF POTENCIACATALOGO = 0 LANÇAR EXCEÇÃO E DAR UM FIRST NO TABLE
 end;
 
 procedure TEMCalcular.SetTempoAceleracao;
@@ -228,11 +230,6 @@ end;
 procedure TEMCalcular.SetTempoRotorBloqueado;
 begin
   FoParamsCalculados.SetTempoRotorBloqueado(GetTable.FieldByName('TEMPOMAXIMOROTORBLOQQUENTE').AsFloat);
-
-  // IF TEMPO ACELERACAO < 0.8 * TEMPO ROTOR BLOQUEADO)
-  // MOTOR ACIONA A CARGA
-  // ELSE
-  // PROBLEMAS DE PROTEÇÃO
 end;
 
 procedure TEMCalcular.SetTempoAceleracaoLimite;

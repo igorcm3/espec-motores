@@ -20,6 +20,7 @@ type
     function GetTempoAceleracao: Extended;
     function GetTempoRotorBloqueado: Extended;
     function GetTempoAceleracaoLimite: Extended;
+    function GetMotorAcionaCarga: Boolean;
     procedure SetPotenciaNominal(AoValue: Extended);
     procedure SetVelocidadeNominal(AoValue: Extended);
     procedure SetConjugadoNominal(AoValue: Extended);
@@ -43,6 +44,11 @@ end;
 function TEMValoresCalculados.GetConjugadoNominal: Extended;
 begin
   Result := FnConjugadoNominal;
+end;
+
+function TEMValoresCalculados.GetMotorAcionaCarga: Boolean;
+begin
+  Result := (GetTempoAceleracao < 0.8 * GetTempoRotorBloqueado);
 end;
 
 function TEMValoresCalculados.GetPotenciaNominal: Extended;
