@@ -12,7 +12,7 @@ uses
   FireDAC.DApt.Intf, FireDAC.Comp.BatchMove.DataSet, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Comp.BatchMove,
   FireDAC.Comp.BatchMove.Text, FireDAC.FMXUI.Wait, FMX.Memo.Types,
-  FMX.ScrollBox, FMX.Memo, uIEMValoresCalculados;
+  FMX.ScrollBox, FMX.Memo, uIEMValoresCalculados, FMX.frxClass;
 
 type
   TfrmPrincipal = class(TForm)
@@ -110,6 +110,9 @@ type
     lblInfExtra: TLabel;
     lblCaptionInfExtra: TLabel;
     lyInformacoesExtras: TLayout;
+    frxRel: TfrxReport;
+    rctRelatorio: TRectangle;
+    btnRelatorio: TSpeedButton;
     procedure btnChamaMenuClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
@@ -124,6 +127,7 @@ type
     procedure btnPlanilhasClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnSobreClick(Sender: TObject);
+    procedure btnRelatorioClick(Sender: TObject);
   private
     function GetParametrosCalcular: IEMParametrosCalcular;
     function ValidarParametros: Boolean;
@@ -159,7 +163,7 @@ begin
 
   lblCaptionInfExtra.Text := '';
   lblInfExtra.Text := '';
-  
+
   for i := frmPrincipal.ComponentCount -1 downto 0 do begin
     if (frmPrincipal.Components[i] is TNumberBox) then begin
        (frmPrincipal.Components[i] as TNumberBox).ResetFocus;
@@ -263,6 +267,30 @@ var
 begin
   formPlanilhas := TfrmPlanilhas.Create(nil);
   formPlanilhas.AbrirForm(bmTableDoisPolos, bmTableQuatroPolos, bmTableSeisPolos, bmTableOitoPolos);
+end;
+
+procedure TfrmPrincipal.btnRelatorioClick(Sender: TObject);
+begin
+  with frxRel do begin
+    //Entrada
+    Variables.Variables['VelocidadeNominalEntrada'] := edtVelocidadeNominal.Value;
+    Variables.Variables['ConjugadoNominalEntrada'] := edtConjugadoNominal.Value;
+    Variables.Variables['ConjugadoPartidaEntrada'] := edtConjugadoPartida.Value;
+    Variables.Variables['MomentoInerciaEntrada'] := edtMomentoInercia.Value;
+    Variables.Variables['RelacaoTransmissaoEntrada'] := edtRelacaoTransmissao.Value;
+    Variables.Variables['RendimentoTransmissaoEntrada'] := edtRendimentoTransmissao.Value;
+    Variables.Variables['InerciaTransmissaoEntrada'] := edtMomentoInerciaTransmissao.Value;
+
+    //Saída
+    Variables.Variables['PotenciaNominalSaida'] := edtPotenciaNominalSaida.Value;
+    Variables.Variables['VelocNominalSaida'] := edtVelocidadeNominalSaida.Value;
+    Variables.Variables['ConjugNominalSaida'] := edtConjugadoNominalSaida.Value;
+    Variables.Variables['TempoAcSaida'] := edtTempoAceleracaoSaida.Value;
+    Variables.Variables['RotorBloqSaida'] := edtTempoRotorBloqueadoSaida.Value;
+    Variables.Variables['TempoAcLimSaida'] := edtTempoAceleracaoLimiteSaida.Value;
+  end;
+
+  frxRel.ShowReport;
 end;
 
 procedure TfrmPrincipal.btnSobreClick(Sender: TObject);
