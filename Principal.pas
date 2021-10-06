@@ -270,8 +270,14 @@ begin
 end;
 
 procedure TfrmPrincipal.btnRelatorioClick(Sender: TObject);
+var
+  caminhoArquivo: String;
 begin
+  caminhoArquivo := StringReplace(ExtractFilePath(GetCurrentDir), 'Win32\', 'Relatorio.fr3', []);
+
   with frxRel do begin
+    LoadFromFile(caminhoArquivo);
+
     //Entrada
     Variables.Variables['VelocidadeNominalEntrada'] := edtVelocidadeNominal.Value;
     Variables.Variables['ConjugadoNominalEntrada'] := edtConjugadoNominal.Value;
