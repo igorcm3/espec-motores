@@ -16,6 +16,7 @@ type
     function GetPotenciaNominalCarga: Extended;
     function GetPotenciaNominalCargaRadianos: Extended;
     function GetConjugadoResistenteMedio: Extended;
+    function GetConjugadoCargaMedio: Extended;
     function GetConjugadoMotorMedio: Extended;
     function GetMomentoInerciaMotor: Extended;
     function GetInerciaAcoplamento: Extended;
@@ -24,6 +25,7 @@ type
     procedure SetPotenciaNominalCarga(AoValue: Extended);
     procedure SetPotenciaNominalCargaRadianos(AoValue: Extended);
     procedure SetConjugadoResistenteMedio(AoValue: Extended);
+    procedure SetConjugadoCargaMedio(AoValue: Extended);
     procedure SetConjugadoMotorMedio(AoValue: Extended);
     procedure SetMomentoInerciaMotor(AoValue: Extended);
     procedure SetInerciaAcoplamento(AoValue: Extended);

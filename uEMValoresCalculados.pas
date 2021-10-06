@@ -18,6 +18,7 @@ type
     FnPotenciaNominalCarga: Extended;
     FnPotenciaNominalCargaRadianos: Extended;
     FnConjugadoResistenteMedio: Extended;
+    FnConjugadoCargaMedio: Extended;
     FnConjugadoMotorMedio: Extended;
     FnMomentoInerciaMotor: Extended;
     FnInerciaAcoplamento: Extended;
@@ -33,6 +34,7 @@ type
     function GetPotenciaNominalCarga: Extended;
     function GetPotenciaNominalCargaRadianos: Extended;
     function GetConjugadoResistenteMedio: Extended;
+    function GetConjugadoCargaMedio: Extended;
     function GetConjugadoMotorMedio: Extended;
     function GetMomentoInerciaMotor: Extended;
     function GetInerciaAcoplamento: Extended;
@@ -41,6 +43,7 @@ type
     procedure SetPotenciaNominalCarga(AoValue: Extended);
     procedure SetPotenciaNominalCargaRadianos(AoValue: Extended);
     procedure SetConjugadoResistenteMedio(AoValue: Extended);
+    procedure SetConjugadoCargaMedio(AoValue: Extended);
     procedure SetConjugadoMotorMedio(AoValue: Extended);
     procedure SetMomentoInerciaMotor(AoValue: Extended);
     procedure SetInerciaAcoplamento(AoValue: Extended);
@@ -73,6 +76,7 @@ begin
   FnPotenciaNominalCarga := 0;
   FnPotenciaNominalCargaRadianos := 0;
   FnConjugadoResistenteMedio := 0;
+  FnConjugadoCargaMedio := 0;
   FnConjugadoMotorMedio := 0;
   FnMomentoInerciaMotor := 0;
   FnInerciaAcoplamento := 0;
@@ -92,6 +96,11 @@ end;
 function TEMValoresCalculados.GetConjugadoResistenteMedio: Extended;
 begin
   Result := FnConjugadoResistenteMedio;
+end;
+
+function TEMValoresCalculados.GetConjugadoCargaMedio: Extended;
+begin
+  Result := FnConjugadoCargaMedio;
 end;
 
 function TEMValoresCalculados.GetInerciaAcoplamento: Extended;
@@ -157,6 +166,11 @@ end;
 class function TEMValoresCalculados.New(): IEMValoresCalculados;
 begin
   Result := TEMValoresCalculados.Create();
+end;
+
+procedure TEMValoresCalculados.SetConjugadoCargaMedio(AoValue: Extended);
+begin
+  FnConjugadoCargaMedio := AoValue;
 end;
 
 procedure TEMValoresCalculados.SetConjugadoMotorMedio(AoValue: Extended);

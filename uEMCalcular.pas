@@ -102,11 +102,15 @@ begin
 end;
 
 procedure TEMCalcular.SetConjugadoNominal;
+  var Cn: Extended;
 begin
   // Cn (dado tabelado) = Pn/Wn
   // Cn (dado tabelado) = Pn/2 * pi * nn
 
-  FoParamsCalculados.SetConjugadoNominal(GetTable.FieldByName('CONJUGADONOMINAL').AsFloat);
+  //FoParamsCalculados.SetConjugadoNominal(GetTable.FieldByName('CONJUGADONOMINAL').AsFloat);
+
+  Cn := FoParamsCalcular.GetConjugadoNominal / ((FoParamsCalcular.GetRendimentoTransmissao/100) * FoParamsCalcular.GetRelacaoTransmissao);
+  FoParamsCalculados.SetConjugadoNominal(Cn);
 end;
 
 function TEMCalcular.GetTable: TFDMemTable;
@@ -157,19 +161,20 @@ end;
 
 procedure TEMCalcular.SetTempoAceleracao;
 var
-  Cmmed, CRMed, Jce, Jm, Jac, TempoAcel: Extended;
+  Cmmed, Ccmed, CRMed, Jce, Jm, Jac, TempoAcel: Extended;
   oTable: TFDMemTable;
 begin
   oTable := GetTable;
 
-  // Cmmed = 0,45 * (Cp/Cn + CMax/Cn) * Cn * 9,81 [Nm]
+  // Cmmed = 0,45 * (Cp/Cn + CMax/Cn) * Cn * 9,81 [Nm] FoParamsCalcular.Get + ...
   Cmmed := (0.45) *
            (oTable.FieldByName('CONJUGADOROTORBLOQUEADO').AsFloat + oTable.FieldByName('CONJUGADOMAXIMO').AsFloat) *
            (oTable.FieldByName('CONJUGADONOMINAL').AsFloat) *
            (9.81);
+  Ccmed := ((2 * 0.1*FoParamsCalcular.GetConjugadoNominal) + FoParamsCalcular.GetConjugadoNominal) / 3;
 
-  // CRMed = Cmmed* R ou CRmed = Cmmed/z [Nm]
-  CRMed := (Cmmed / FoParamsCalcular.GetRelacaoTransmissao);
+  // CRMed = CRmed = Cmmed/z [Nm]
+  CRMed := (Ccmed / FoParamsCalcular.GetRelacaoTransmissao);
 
   Jm := oTable.FieldByName('MOMENTOINERCIA').AsFloat;
 
@@ -182,10 +187,12 @@ begin
   //Verificar se transmissão = acoplamento
 
   // TA = 2 * PI * n/60 * ((Jm + Jce) / (Cmmmed - CRMed))
-  TempoAcel := (2 * System.Pi) *
-               (FoParamsCalculados.GetVelocidadeNominal / 60) *
-               ((Jm + Jce + Jac) / (Cmmed - CRMed));
+  //TempoAcel := (2 * System.Pi) *
+  //             (FoParamsCalculados.GetVelocidadeNominal / 60) *
+  //             ((Jm + Jce + Jac) / (Cmmed - CRMed));
+  TempoAcel := ((FoParamsCalculados.GetVelocidadeNominal * 2 * System.Pi)/60) * ((Jm + Jac + Jce) / (Cmmed - CRMed));
 
+  FoParamsCalculados.SetConjugadoCargaMedio(Ccmed);
   FoParamsCalculados.SetConjugadoMotorMedio(Cmmed);
   FoParamsCalculados.SetConjugadoResistenteMedio(CRMed);
   FoParamsCalculados.SetMomentoInerciaMotor(Jm);
