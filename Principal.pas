@@ -129,13 +129,14 @@ type
     procedure btnSobreClick(Sender: TObject);
     procedure btnRelatorioClick(Sender: TObject);
   private
+    FoValoresCalculados: IEMValoresCalculados;
     function GetParametrosCalcular: IEMParametrosCalcular;
     function ValidarParametros: Boolean;
     procedure FocaComponente(AoNumberBox: TNumberBox);
-    procedure ValidarMotorAcionaCarga(AoValoresCalculados: IEMValoresCalculados);
-    procedure CarregarInformacoesExtras(
-      AoValoresCalculados: IEMValoresCalculados);
+    procedure ValidarMotorAcionaCarga;
+    procedure CarregarInformacoesExtras;
     procedure AddInfLabel(AcTitle: String; AnValue: Extended);
+    procedure LimparInformacoesExtras;
     { Private declarations }
   public
     isDraging: boolean;
@@ -161,8 +162,7 @@ begin
   lyAviso.Visible := False;
   lyInformacoesExtras.Visible := False;
 
-  lblCaptionInfExtra.Text := '';
-  lblInfExtra.Text := '';
+  LimparInformacoesExtras;
 
   for i := frmPrincipal.ComponentCount -1 downto 0 do begin
     if (frmPrincipal.Components[i] is TNumberBox) then begin
@@ -174,27 +174,33 @@ begin
   edtVelocidadeNominal.SetFocus;
 end;
 
-procedure TfrmPrincipal.btnCalcularClick(Sender: TObject);
-var
-  oValoresCalculados: IEMValoresCalculados;
+procedure TfrmPrincipal.LimparInformacoesExtras;
 begin
+  lblCaptionInfExtra.Text := '';
+  lblInfExtra.Text := '';
+end;
+
+procedure TfrmPrincipal.btnCalcularClick(Sender: TObject);
+begin
+  LimparInformacoesExtras;
+
   edtVelocidadeNominal.SetFocus;
 
   if (not ValidarParametros) then
     Exit;
 
   try
-    oValoresCalculados := TEMCalcular.New(GetParametrosCalcular).Calcular;
+    FoValoresCalculados := TEMCalcular.New(GetParametrosCalcular).Calcular;
 
-    edtPotenciaNominalSaida.Value := oValoresCalculados.GetPotenciaNominal;
-    edtVelocidadeNominalSaida.Value := oValoresCalculados.GetVelocidadeNominal;
-    edtConjugadoNominalSaida.Value := oValoresCalculados.GetConjugadoNominal;
-    edtTempoAceleracaoSaida.Value := oValoresCalculados.GetTempoAceleracao;
-    edtTempoRotorBloqueadoSaida.Value := oValoresCalculados.GetTempoRotorBloqueado;
-    edtTempoAceleracaoLimiteSaida.Value := oValoresCalculados.GetTempoAceleracaoLimite;
+    edtPotenciaNominalSaida.Value := FoValoresCalculados.GetPotenciaNominal;
+    edtVelocidadeNominalSaida.Value := FoValoresCalculados.GetVelocidadeNominal;
+    edtConjugadoNominalSaida.Value := FoValoresCalculados.GetConjugadoNominal;
+    edtTempoAceleracaoSaida.Value := FoValoresCalculados.GetTempoAceleracao;
+    edtTempoRotorBloqueadoSaida.Value := FoValoresCalculados.GetTempoRotorBloqueado;
+    edtTempoAceleracaoLimiteSaida.Value := FoValoresCalculados.GetTempoAceleracaoLimite;
 
-    CarregarInformacoesExtras(oValoresCalculados);
-    ValidarMotorAcionaCarga(oValoresCalculados);
+    CarregarInformacoesExtras;
+    ValidarMotorAcionaCarga;
   except
     on E: Exception do begin
       MessageDlg(e.Message, TMsgDlgType.mtError, [TMsgDlgBtn.mbok], 0);
@@ -203,31 +209,31 @@ begin
   end;
 end;
 
-procedure TfrmPrincipal.ValidarMotorAcionaCarga(AoValoresCalculados: IEMValoresCalculados);
+procedure TfrmPrincipal.ValidarMotorAcionaCarga;
 begin
   lyAviso.Visible := True;
-  
-  imgAlerta.Visible := (not AoValoresCalculados.GetMotorAcionaCarga);
-  imgSucesso.Visible := (AoValoresCalculados.GetMotorAcionaCarga);
 
-  if (AoValoresCalculados.GetMotorAcionaCarga) then
+  imgAlerta.Visible := (not FoValoresCalculados.GetMotorAcionaCarga);
+  imgSucesso.Visible := (FoValoresCalculados.GetMotorAcionaCarga);
+
+  if (FoValoresCalculados.GetMotorAcionaCarga) then
     lblAviso.Text := 'Motor Aciona a Carga'
   else
     lblAviso.Text := 'Problemas de Proteção';
 end;
 
-procedure TfrmPrincipal.CarregarInformacoesExtras(AoValoresCalculados: IEMValoresCalculados);
+procedure TfrmPrincipal.CarregarInformacoesExtras;
 begin
   lyInformacoesExtras.Visible := True;
 
-  AddInfLabel('Número de Polos:', AoValoresCalculados.GetNumeroPolos);
-  AddInfLabel('Potência Nominal Carga (Pc):', AoValoresCalculados.GetPotenciaNominalCarga);
-  AddInfLabel('Potência Nominal Carga rad/s (Wc):', AoValoresCalculados.GetPotenciaNominalCargaRadianos);
-  AddInfLabel('Conjugado Resistente Médio (Crmed):', AoValoresCalculados.GetConjugadoResistenteMedio);
-  AddInfLabel('Conjugado Motor Médio (Cmmed):', AoValoresCalculados.GetConjugadoMotorMedio);
-  AddInfLabel('Momento Inércia Motor (Jm):', AoValoresCalculados.GetMomentoInerciaMotor);
-  AddInfLabel('Inércia Acoplamento (Jac):', AoValoresCalculados.GetInerciaAcoplamento);
-  AddInfLabel('Momento Inércia Carga Referido ao Motor (Jce):', AoValoresCalculados.GetMomentoInerciaReferidoMotor);
+  AddInfLabel('Número de Polos:', FoValoresCalculados.GetNumeroPolos);
+  AddInfLabel('Potência Nominal Carga (Pc):', FoValoresCalculados.GetPotenciaNominalCarga);
+  AddInfLabel('Potência Nominal Carga rad/s (Wc):', FoValoresCalculados.GetPotenciaNominalCargaRadianos);
+  AddInfLabel('Conjugado Resistente Médio (Crmed):', FoValoresCalculados.GetConjugadoResistenteMedio);
+  AddInfLabel('Conjugado Motor Médio (Cmmed):', FoValoresCalculados.GetConjugadoMotorMedio);
+  AddInfLabel('Momento Inércia Motor (Jm):', FoValoresCalculados.GetMomentoInerciaMotor);
+  AddInfLabel('Inércia Acoplamento (Jac):', FoValoresCalculados.GetInerciaAcoplamento);
+  AddInfLabel('Momento Inércia Carga Referido ao Motor (Jce):', FoValoresCalculados.GetMomentoInerciaReferidoMotor);
 end;
 
 procedure TfrmPrincipal.AddInfLabel(AcTitle: String; AnValue: Extended);
@@ -294,6 +300,11 @@ begin
     Variables.Variables['TempoAcSaida'] := edtTempoAceleracaoSaida.Value;
     Variables.Variables['RotorBloqSaida'] := edtTempoRotorBloqueadoSaida.Value;
     Variables.Variables['TempoAcLimSaida'] := edtTempoAceleracaoLimiteSaida.Value;
+
+    //Outras Informações
+    Variables.Variables['PotenciaNominalCarga'] := FoValoresCalculados.GetPotenciaNominalCarga;
+    Variables.Variables['PotenciaNominalCargaRads'] := FoValoresCalculados.GetPotenciaNominalCargaRadianos;
+    Variables.Variables['ConjugadoResMedio'] := FoValoresCalculados.GetConjugadoResistenteMedio;
   end;
 
   frxRel.ShowReport;
@@ -414,6 +425,8 @@ procedure TfrmPrincipal.FormShow(Sender: TObject);
 var
   caminhoArquivo: String;
 begin
+  FoValoresCalculados := TEMValoresCalculados.New();
+
   lyInformacoesExtras.Visible := False;
   lyAviso.Visible := False;
 
