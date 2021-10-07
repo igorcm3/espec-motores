@@ -1,4 +1,4 @@
-unit Principal;
+Ôªøunit Principal;
 
 interface
 
@@ -128,17 +128,16 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnSobreClick(Sender: TObject);
     procedure btnRelatorioClick(Sender: TObject);
+    procedure frxRelBeforePrint(Sender: TfrxReportComponent);
   private
     FoValoresCalculados: IEMValoresCalculados;
     function GetParametrosCalcular: IEMParametrosCalcular;
     function ValidarParametros: Boolean;
     procedure FocaComponente(AoNumberBox: TNumberBox);
-
     procedure ValidarMotorAcionaCarga;
     procedure CarregarInformacoesExtras;
-    procedure AddInfLabel(AcTitle: String; AnValue: Extended; acUnidade: String);
+    procedure AddInfLabel(AcTitle: String; AnValue: Extended; AcUnidade: String);
     procedure LimparInformacoesExtras;
-    procedure rctNavBarClick(Sender: TObject);
     { Private declarations }
   public
     isDraging: boolean;
@@ -221,28 +220,28 @@ begin
   if (FoValoresCalculados.GetMotorAcionaCarga) then
     lblAviso.Text := 'Motor Aciona a Carga'
   else
-    lblAviso.Text := 'Problemas de ProteÁ„o';
+    lblAviso.Text := 'Problemas de Prote√ß√£o';
 end;
 
 procedure TfrmPrincipal.CarregarInformacoesExtras;
 begin
   lyInformacoesExtras.Visible := True;
 
-  AddInfLabel('N˙mero de Polos:', FoValoresCalculados.GetNumeroPolos, '');
-  AddInfLabel('PotÍncia Nominal Carga (Pc):', FoValoresCalculados.GetPotenciaNominalCarga, 'kW');
-  AddInfLabel('PotÍncia Nominal Carga rad/s (Wc):', FoValoresCalculados.GetPotenciaNominalCargaRadianos, 'kW');
-  AddInfLabel('Conjugado Resistente MÈdio (Crmed):', FoValoresCalculados.GetConjugadoResistenteMedio, 'N.m');
-  AddInfLabel('Conjugado Carga MÈdio (Ccmed):', FoValoresCalculados.GetConjugadoCargaMedio, 'N.m');
-  AddInfLabel('Conjugado Motor MÈdio (Cmmed):', FoValoresCalculados.GetConjugadoMotorMedio, 'N.m');
-  AddInfLabel('Momento InÈrcia Motor (Jm):', FoValoresCalculados.GetMomentoInerciaMotor, 'kgm≤');
-  AddInfLabel('InÈrcia Acoplamento (Jac):', FoValoresCalculados.GetInerciaAcoplamento, 'kgm≤');
-  AddInfLabel('Momento InÈrcia Carga Referido ao Motor (Jce):', FoValoresCalculados.GetMomentoInerciaReferidoMotor, 'kgm≤');
+  AddInfLabel('N√∫mero de Polos:', FoValoresCalculados.GetNumeroPolos, '');
+  AddInfLabel('Pot√™ncia Nominal Carga (Pc):', FoValoresCalculados.GetPotenciaNominalCarga, 'kW');
+  AddInfLabel('Pot√™ncia Nominal Carga rad/s (Wc):', FoValoresCalculados.GetPotenciaNominalCargaRadianos, 'kW');
+  AddInfLabel('Conjugado Resistente M√©dio (Crmed):', FoValoresCalculados.GetConjugadoResistenteMedio, 'N.m');
+  AddInfLabel('Conjugado Carga M√©dio (Ccmed):', FoValoresCalculados.GetConjugadoCargaMedio, 'N.m');
+  AddInfLabel('Conjugado Motor M√©dio (Cmmed):', FoValoresCalculados.GetConjugadoMotorMedio, 'N.m');
+  AddInfLabel('Momento In√©rcia Motor (Jm):', FoValoresCalculados.GetMomentoInerciaMotor, 'kg.m¬≤');
+  AddInfLabel('In√©rcia Acoplamento (Jac):', FoValoresCalculados.GetInerciaAcoplamento, 'kg.m¬≤');
+  AddInfLabel('Momento In√©rcia Carga Referido ao Motor (Jce):', FoValoresCalculados.GetMomentoInerciaReferidoMotor, 'kg.m¬≤');
 end;
 
-procedure TfrmPrincipal.AddInfLabel(AcTitle: String; AnValue: Extended; acUnidade: String);
+procedure TfrmPrincipal.AddInfLabel(AcTitle: String; AnValue: Extended; AcUnidade: String);
 begin
   lblCaptionInfExtra.Text := lblCaptionInfExtra.Text + AcTitle + sLineBreak;
-  lblInfExtra.Text := lblInfExtra.Text + FormatFloat('0.####', AnValue) + ' ' + acUnidade + sLineBreak;
+  lblInfExtra.Text := lblInfExtra.Text + FormatFloat('0.####', AnValue) + ' ' + AcUnidade + sLineBreak;
 end;
 
 function TfrmPrincipal.GetParametrosCalcular: IEMParametrosCalcular;
@@ -282,6 +281,8 @@ procedure TfrmPrincipal.btnRelatorioClick(Sender: TObject);
 var
   caminhoArquivo: String;
 begin
+  edtVelocidadeNominal.SetFocus;
+
   caminhoArquivo := StringReplace(ExtractFilePath(GetCurrentDir), 'Win32\', 'Relatorio.fr3', []);
 
   with frxRel do begin
@@ -296,7 +297,16 @@ begin
     Variables.Variables['RendimentoTransmissaoEntrada'] := edtRendimentoTransmissao.Value;
     Variables.Variables['InerciaTransmissaoEntrada'] := edtMomentoInerciaTransmissao.Value;
 
-    //SaÌda
+    //Unidades de medida Entrada
+    Variables.Variables['UnVelocidadeNominalEntrada'] := QuotedStr('rpm');
+    Variables.Variables['UnConjugadoNominalEntrada'] := QuotedStr('N.m');
+    Variables.Variables['UnConjugadoPartidaEntrada'] := QuotedStr('N.m');
+    Variables.Variables['UnMomentoInerciaEntrada'] := QuotedStr('kg.m¬≤');
+    Variables.Variables['UnRelacaoTransmissaoEntrada'] := QuotedStr('z');
+    Variables.Variables['UnRendimentoTransmissaoEntrada'] := QuotedStr('Œ∑');
+    Variables.Variables['UnInerciaTransmissaoEntrada'] := QuotedStr('kg.m¬≤');
+
+    //Sa√≠da
     Variables.Variables['PotenciaNominalSaida'] := edtPotenciaNominalSaida.Value;
     Variables.Variables['VelocNominalSaida'] := edtVelocidadeNominalSaida.Value;
     Variables.Variables['ConjugNominalSaida'] := edtConjugadoNominalSaida.Value;
@@ -304,10 +314,34 @@ begin
     Variables.Variables['RotorBloqSaida'] := edtTempoRotorBloqueadoSaida.Value;
     Variables.Variables['TempoAcLimSaida'] := edtTempoAceleracaoLimiteSaida.Value;
 
-    //Outras InformaÁıes
+    //Unidades de medida Sa√≠da
+    Variables.Variables['UnPotenciaNominalSaida'] := QuotedStr('kW');
+    Variables.Variables['UnVelocNominalSaida'] := QuotedStr('rpm');
+    Variables.Variables['UnConjugNominalSaida'] := QuotedStr('N.m');
+    Variables.Variables['UnTempoAcSaida'] := QuotedStr('s');
+    Variables.Variables['UnRotorBloqSaida'] := QuotedStr('s');
+    Variables.Variables['UnTempoAcLimSaida'] := QuotedStr('s');
+
+    //Outras Informa√ß√µes
     Variables.Variables['PotenciaNominalCarga'] := FoValoresCalculados.GetPotenciaNominalCarga;
     Variables.Variables['PotenciaNominalCargaRads'] := FoValoresCalculados.GetPotenciaNominalCargaRadianos;
     Variables.Variables['ConjugadoResMedio'] := FoValoresCalculados.GetConjugadoResistenteMedio;
+    Variables.Variables['MomentoInerciaMotor'] := FoValoresCalculados.GetMomentoInerciaMotor;
+    Variables.Variables['InerciaAcoplamento'] := FoValoresCalculados.GetInerciaAcoplamento;
+    Variables.Variables['InerciaCargaRefMotor'] := FoValoresCalculados.GetMomentoInerciaReferidoMotor;
+    Variables.Variables['ConjugadoMotorMedio'] := FoValoresCalculados.GetConjugadoMotorMedio;
+    Variables.Variables['ConjugadoCargaMedio'] := FoValoresCalculados.GetConjugadoCargaMedio;
+    Variables.Variables['NumeroPolos'] := FoValoresCalculados.GetNumeroPolos;
+
+    //Unidades de medidas outras informa√ß√µes
+    Variables.Variables['UnPotenciaNominalCarga'] := QuotedStr('kW');
+    Variables.Variables['UnPotenciaNominalCargaRads'] := QuotedStr('kW');
+    Variables.Variables['UnConjugadoResMedio'] := QuotedStr('N.m');
+    Variables.Variables['UnMomentoInerciaMotor'] := QuotedStr('kg.m¬≤');
+    Variables.Variables['UnInerciaAcoplamento'] := QuotedStr('kg.m¬≤');
+    Variables.Variables['UnInerciaCargaRefMotor'] := QuotedStr('kg.m¬≤');
+    Variables.Variables['UnConjugadoMotorMedio'] := QuotedStr('N.m');
+    Variables.Variables['UnConjugadoCargaMedio'] := QuotedStr('N.m');
   end;
 
   frxRel.ShowReport;
@@ -335,15 +369,10 @@ begin
   (Sender as TNumberBox).SelectAll;
 end;
 
-procedure TfrmPrincipal.rctNavBarClick(Sender: TObject);
-begin
-
-end;
-
 function TfrmPrincipal.ValidarParametros: Boolean;
 const
-  msgPlanilha = 'A planilha de "%s" n„o foi encontrada na pasta do projeto!';
-  msgValorNaoInformado = 'O valor referente ao campo "%s" n„o foi informado!';
+  msgPlanilha = 'A planilha de "%s" n√£o foi encontrada na pasta do projeto!';
+  msgValorNaoInformado = 'O valor referente ao campo "%s" n√£o foi informado!';
 
 var
   cMsg: String;
@@ -469,7 +498,17 @@ begin
   end;
 end;
 
-// --------Funcıes para movimentar a tela sem barra de titulo no windows ----//
+procedure TfrmPrincipal.frxRelBeforePrint(Sender: TfrxReportComponent);
+begin
+  TFrxPictureView(frxRel.FindComponent('motor2Polos')).Visible := FoValoresCalculados.GetNumeroPolos = 2;
+  TFrxPictureView(frxRel.FindComponent('motor4Polos')).Visible := FoValoresCalculados.GetNumeroPolos = 4;
+  TFrxPictureView(frxRel.FindComponent('motor6Polos')).Visible := FoValoresCalculados.GetNumeroPolos = 6;
+  TFrxPictureView(frxRel.FindComponent('motor8Polos')).Visible := FoValoresCalculados.GetNumeroPolos = 8;
+  TFrxMemoView(frxRel.FindComponent('mmPolos')).Visible := FoValoresCalculados.GetNumeroPolos > 0;
+  TFrxLineView(frxRel.FindComponent('LineFinal')).Visible := FoValoresCalculados.GetNumeroPolos > 0;
+end;
+
+// --------Func√µes para movimentar a tela sem barra de titulo no windows ----//
 
 procedure TfrmPrincipal.FormMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Single);
@@ -495,6 +534,6 @@ begin
   isDraging := False;
 end;
 
-// ------------- FIM Funcıes para movimentar a tela ------------------------//
+// ------------- FIM Func√µes para movimentar a tela ------------------------//
 
 end.
