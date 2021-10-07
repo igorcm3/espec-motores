@@ -135,7 +135,7 @@ type
     procedure ValidarMotorAcionaCarga(AoValoresCalculados: IEMValoresCalculados);
     procedure CarregarInformacoesExtras(
       AoValoresCalculados: IEMValoresCalculados);
-    procedure AddInfLabel(AcTitle: String; AnValue: Extended);
+    procedure AddInfLabel(AcTitle: String; AnValue: Extended; acUnidade: String);
     { Private declarations }
   public
     isDraging: boolean;
@@ -220,20 +220,21 @@ procedure TfrmPrincipal.CarregarInformacoesExtras(AoValoresCalculados: IEMValore
 begin
   lyInformacoesExtras.Visible := True;
 
-  AddInfLabel('Número de Polos:', AoValoresCalculados.GetNumeroPolos);
-  AddInfLabel('Potência Nominal Carga (Pc):', AoValoresCalculados.GetPotenciaNominalCarga);
-  AddInfLabel('Potência Nominal Carga rad/s (Wc):', AoValoresCalculados.GetPotenciaNominalCargaRadianos);
-  AddInfLabel('Conjugado Resistente Médio (Crmed):', AoValoresCalculados.GetConjugadoResistenteMedio);
-  AddInfLabel('Conjugado Motor Médio (Cmmed):', AoValoresCalculados.GetConjugadoMotorMedio);
-  AddInfLabel('Momento Inércia Motor (Jm):', AoValoresCalculados.GetMomentoInerciaMotor);
-  AddInfLabel('Inércia Acoplamento (Jac):', AoValoresCalculados.GetInerciaAcoplamento);
-  AddInfLabel('Momento Inércia Carga Referido ao Motor (Jce):', AoValoresCalculados.GetMomentoInerciaReferidoMotor);
+  AddInfLabel('Número de Polos:', AoValoresCalculados.GetNumeroPolos, '');
+  AddInfLabel('Potência Nominal Carga (Pc):', AoValoresCalculados.GetPotenciaNominalCarga, 'kW');
+  AddInfLabel('Potência Nominal Carga rad/s (Wc):', AoValoresCalculados.GetPotenciaNominalCargaRadianos, 'kW');
+  AddInfLabel('Conjugado Resistente Médio (Crmed):', AoValoresCalculados.GetConjugadoResistenteMedio, 'N.m');
+  AddInfLabel('Conjugado Carga Médio (Ccmed):', AoValoresCalculados.GetConjugadoCargaMedio, 'N.m');
+  AddInfLabel('Conjugado Motor Médio (Cmmed):', AoValoresCalculados.GetConjugadoMotorMedio, 'N.m');
+  AddInfLabel('Momento Inércia Motor (Jm):', AoValoresCalculados.GetMomentoInerciaMotor, 'kgm²');
+  AddInfLabel('Inércia Acoplamento (Jac):', AoValoresCalculados.GetInerciaAcoplamento, 'kgm²');
+  AddInfLabel('Momento Inércia Carga Referido ao Motor (Jce):', AoValoresCalculados.GetMomentoInerciaReferidoMotor, 'kgm²');
 end;
 
-procedure TfrmPrincipal.AddInfLabel(AcTitle: String; AnValue: Extended);
+procedure TfrmPrincipal.AddInfLabel(AcTitle: String; AnValue: Extended; acUnidade: String);
 begin
   lblCaptionInfExtra.Text := lblCaptionInfExtra.Text + AcTitle + sLineBreak;
-  lblInfExtra.Text := lblInfExtra.Text + FormatFloat('0.####', AnValue) + sLineBreak;
+  lblInfExtra.Text := lblInfExtra.Text + FormatFloat('0.####', AnValue) + ' ' + acUnidade + sLineBreak;
 end;
 
 function TfrmPrincipal.GetParametrosCalcular: IEMParametrosCalcular;
