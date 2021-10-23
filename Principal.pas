@@ -165,6 +165,8 @@ begin
 
   LimparInformacoesExtras;
 
+  FoValoresCalculados.LimparVariaveis;
+
   for i := frmPrincipal.ComponentCount -1 downto 0 do begin
     if (frmPrincipal.Components[i] is TNumberBox) then begin
        (frmPrincipal.Components[i] as TNumberBox).ResetFocus;

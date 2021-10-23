@@ -54,6 +54,7 @@ type
     procedure SetTempoAceleracao(AoValue: Extended);
     procedure SetTempoRotorBloqueado(AoValue: Extended);
     procedure SetTempoAceleracaoLimite(AoValue: Extended);
+    procedure LimparVariaveis;
   public
     class function New(): IEMValoresCalculados;
     constructor Create();
@@ -66,21 +67,7 @@ implementation
 constructor TEMValoresCalculados.Create();
 begin
   inherited Create();
-  FnPotenciaNominal := 0;
-  FnVelocidadeNominal := 0;
-  FnConjugadoNominal := 0;
-  FnTempoAceleracao := 0;
-  FnTempoRotorBloqueado := 0;
-  FnTempoAceleracaoLimite := 0;
-  FnNumeroPolos := 0;
-  FnPotenciaNominalCarga := 0;
-  FnPotenciaNominalCargaRadianos := 0;
-  FnConjugadoResistenteMedio := 0;
-  FnConjugadoCargaMedio := 0;
-  FnConjugadoMotorMedio := 0;
-  FnMomentoInerciaMotor := 0;
-  FnInerciaAcoplamento := 0;
-  FnMomentoInerciaReferidoMotor := 0;
+  LimparVariaveis;
 end;
 
 function TEMValoresCalculados.GetConjugadoMotorMedio: Extended;
@@ -161,6 +148,25 @@ end;
 function TEMValoresCalculados.GetVelocidadeNominal: Extended;
 begin
   Result := FnVelocidadeNominal;
+end;
+
+procedure TEMValoresCalculados.LimparVariaveis;
+begin
+  FnPotenciaNominal := 0;
+  FnVelocidadeNominal := 0;
+  FnConjugadoNominal := 0;
+  FnTempoAceleracao := 0;
+  FnTempoRotorBloqueado := 0;
+  FnTempoAceleracaoLimite := 0;
+  FnNumeroPolos := 0;
+  FnPotenciaNominalCarga := 0;
+  FnPotenciaNominalCargaRadianos := 0;
+  FnConjugadoResistenteMedio := 0;
+  FnConjugadoCargaMedio := 0;
+  FnConjugadoMotorMedio := 0;
+  FnMomentoInerciaMotor := 0;
+  FnInerciaAcoplamento := 0;
+  FnMomentoInerciaReferidoMotor := 0;
 end;
 
 class function TEMValoresCalculados.New(): IEMValoresCalculados;

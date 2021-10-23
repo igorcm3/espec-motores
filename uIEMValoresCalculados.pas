@@ -36,6 +36,7 @@ type
     procedure SetTempoAceleracao(AoValue: Extended);
     procedure SetTempoRotorBloqueado(AoValue: Extended);
     procedure SetTempoAceleracaoLimite(AoValue: Extended);
+    procedure LimparVariaveis;
   end;
 
 implementation
